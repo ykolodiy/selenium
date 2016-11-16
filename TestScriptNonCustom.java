@@ -4,26 +4,28 @@ package exceltry;
 import java.io.File;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import jxl.Workbook;
 
 
-public class TestScript4html {
+public class TestScriptNonCustom {
 	
 	public static void main(String[] args) throws Exception {
-		WebDriver driver = new HtmlUnitDriver();
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
 		//specify location
-		File src = new File ("C:/Test5.xls");
+		File src = new File ("C:/1/custom8.xls");
 		//load excel file
 		Workbook wb = Workbook.getWorkbook(src);
 		//get cell
 		System.out.println("Those states were tested:");
-		for (int i=0; i<186; i++) {
+		for (int i=0; i<50; i++) {
 		
 		String data00 = wb.getSheet(0).getCell(0,i).getContents();
 		
 		driver.get(data00);
+		
 		
 		System.out.println((i+1)+ " " + driver.getTitle());
 		
