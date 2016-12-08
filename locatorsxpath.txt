@@ -1,0 +1,44 @@
+http://www.guru99.com/xpath-selenium.html
+
+
+
+by tag
+driver.findElement(By.cssSelector("h2")).getText();
+
+by Link text
+driver.findElement(By.linkText("MOBILE")).click();
+
+text from span
+<span class="regular-price" id="product-price-1">
+<span class="price">$100.00</span></span>
+driver.findElement(By.cssSelector("#product-price-1 > span.price")).getText();
+driver.findElement(By.cssSelector("span.price")).getText();
+
+driver.findElement(By.cssSelector("td.product-cart-actions > button[name=update_cart_action]")).click();
+xpath = //td[not(contains(@class,'ui-datepicker-other-month'))]/a[text()='"+date+"']
+Xpath=//*[@type='submit' OR @name='btnReset']
+Xpath=//*[contains(text(),'here')]
+Xpath=//*[contains(@href,'guru99.com')]	
+Xpath=//input[@type='submit' AND @name='btnLogin']
+Xpath=//label[starts-with(@id,'message')]
+
+Xpath=//td[text()='UserID']	
+Xpath=//*[text()='Enterprise Testing']//ancestor::div
+Xpath=//*[@type='submit']//preceding::input
+Xpath=//*[@id='rt-feature']//parent::div	
+//div[@class='datepicker']/div/table/tbody/tr/td/table/tbody[2]/tr/td[@class='' or @class='datepickerSaturday' or @class='datepickerSunday']/a/span"
+driver.findElement(By.xpath(".//*[@id='shopping-cart-table']/tbody/tr/td[4]/input")).clear();
+driver.findElement(By.xpath("//button[@title='Compare']")).click();	
+driver.findElement(By.xpath("//h2/a[@title='IPhone']")).getText(); 
+driver.findElement(By.xpath("//a[@href='http://emaus-oselya.org/eng']")).getText();
+driver.findElement(By.xpath(".//*[@id='co-shipping-method-form']/dl/dd/ul/li/label")).getText();
+driver.findElement(By.xpath("//button[@title='Proceed to Checkout']")).click();
+
+ // switching to new window
+	    for (String handle : driver.getWindowHandles()) {
+	    	driver.switchTo().window(handle);
+	    	}
+
+In the list of all mobile , select ?SORT BY? dropdown as ?name?		
+	    new Select(driver.findElement(By.cssSelector("select[title=\"Sort By\"]"))).selectByVisibleText("Name");
+	    
