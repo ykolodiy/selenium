@@ -86,4 +86,8 @@ private Object[][] getURLs() {
     {"http://stackoverflow.com/"}
   };
 }
+
+
+or
+@Test(invocationCount = 10)
 */
