@@ -61,3 +61,29 @@ public class NewTest {
   }
 
 }
+
+
+
+
+
+
+
+
+/* Since Data provider for this test method returns 2D array of size 3x1, 
+this test method will run 3 times **automatically** with 1 parameter every time. 
+@Test(dataProvider="URLprovider")
+private void notePrice(String url) {
+    driver.get(url);
+    System.out.println(driver.getTitle());  
+}
+
+ It will return a 2D array of size 3x1
+@DataProvider(name="URLprovider")
+private Object[][] getURLs() {
+  return new Object[][] {
+    {"https://www.google.co.in/"},
+    {"http://www.gmail.com/"},
+    {"http://stackoverflow.com/"}
+  };
+}
+*/
