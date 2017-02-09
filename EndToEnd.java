@@ -13,7 +13,7 @@ public class EndToEnd {
 	public static void main(String[] args) throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
-			String progid = "literacy";
+			String progid = "Literacy";
 			driver.manage().window().maximize();
 			
 		
@@ -24,7 +24,7 @@ public class EndToEnd {
 			driver.findElement(By.xpath("//*[@id='prog_input_header']")).sendKeys(progid);
 			//press enter
 			driver.findElement(By.xpath("//*[@id='prog_input_header']")).sendKeys(Keys.RETURN);
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			//select 1st value shown
 			driver.findElement(By.xpath("//*[@class='programRollupDisplay']//li[1]/div/a")).click();
 			Thread.sleep(2000);
@@ -47,7 +47,7 @@ public class EndToEnd {
 			
 			
 			//select amount of some product
-			driver.findElement(By.xpath(".//*[@name='cart_quantity2']")).sendKeys("3");
+			driver.findElement(By.xpath(".//*[@name='cart_quantity1']")).sendKeys("3");
 			//click submit order
 			driver.findElement(By.xpath(".//*[@name='cartSubmit']")).click();
 			Thread.sleep(1000);
@@ -64,7 +64,7 @@ public class EndToEnd {
 			
 			driver.findElement(By.xpath("//div[starts-with(@id,'prodItem')][1]/div/strong/a")).click();
 			//print what is selected
-			WebElement f = driver.findElement(By.xpath(".//div[@class='prodDescriptionInner']/p[1]/strong"));
+			WebElement f = driver.findElement(By.xpath(".//div[@class='prodDescriptionInner']/p[1]"));
 			Thread.sleep(1000);
 			System.out.println("name of program "+f.getText());
 			
