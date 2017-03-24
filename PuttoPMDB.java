@@ -75,7 +75,16 @@ public class PuttoPMDB {
 							
 							String t = "C:\\Users\\vkoloyu\\alfrescoPDF\\03_17_2017\\50\\PNG\\";
 							//start autoit to insert url
-						
+						/* autoit script
+ControlFocus("Open" , "" , "Edit1")
+ControlSetText ("Open", "", "Edit1", $CmdLine[1])
+ControlClick ("Open", "", "Button1")
+							
+							
+							
+							
+							
+							*/
 							Runtime.getRuntime().exec("C:\\Users\\vkoloyu\\autoit\\alfrescoAutoIt2.exe"+" "+t+data+".png");
 							Thread.sleep(1100);
 							//submit
