@@ -1,0 +1,46 @@
+package office;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DisableJSChrome {
+	static WebDriver driver;
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		DisableJS();
+
+driver.get("http://www.pearsonschool.com/");
+Thread.sleep(4000);
+EnableJS();
+driver.get("http://www.pearsonschool.com/");
+Thread.sleep(4000);
+
+driver.close();
+	}
+
+	
+	static public void DisableJS () {
+		driver.get("chrome://settings");
+		driver.switchTo().frame("settings");
+		driver.findElement(By.id("advanced-settings-expander")).click();
+		driver.findElement(By.id("privacyContentSettingsButton")).click();
+		//here do not allow js
+		driver.findElement(By.xpath("//*[@id='content-settings-page']/div[2]/section[3]/div/div[2]/label/input")).click();
+		driver.findElement(By.id("content-settings-overlay-confirm")).click();
+	}
+	
+	static public void EnableJS () {
+		driver.get("chrome://settings");
+		driver.switchTo().frame("settings");
+		driver.findElement(By.id("advanced-settings-expander")).click();
+		driver.findElement(By.id("privacyContentSettingsButton")).click();
+		//here allow js
+		driver.findElement(By.xpath("//*[@id='content-settings-page']/div[2]/section[3]/div/div[1]/label/input")).click();
+		driver.findElement(By.id("content-settings-overlay-confirm")).click();
+	}
+	
+}
+
