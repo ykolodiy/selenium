@@ -21,21 +21,18 @@ public void TeststatePages () throws Exception, IOException
 		driver.get("http://www.pearsonschool.com/index.cfm?locator=PS1zJo");
 		List<String> hrefs = new ArrayList<String>();
 		List<WebElement> disciplines=driver.findElements(By.tagName("a"));
-		
-		
+				
 		
 		for(int i=0;i<disciplines.size();i++)
 				
 	{ 
-			try { 
+		try { 
 				WebElement ele= disciplines.get(i);
 	   String href=ele.getAttribute("href");
 	   			  if (href.contains("PMDbCategoryID") && !href.contains("logout")) {
 	   				hrefs.add(href);
 	   				System.out.println(ele.getText());
 	   						  				  }
-	   			  
-	   			  
 	   			  else {}   			  
 		}
 	
@@ -46,13 +43,25 @@ public void TeststatePages () throws Exception, IOException
 		
 			for ( String hre : hrefs ) {
 	   				    driver.get(hre); 
-	   				    System.out.println(driver.getCurrentUrl());
+	   				       System.out.println(driver.getCurrentUrl());
 	   				 PrintEmpty();
-	   				
-	   				    
+	   				 
+	   				try {
+		   				String j = driver.findElement(By.linkText("2")).getAttribute("href");
+		   				    if (j != null && !j.isEmpty()) {
+		   				     driver.get(j);
+		   				       System.out.println(driver.getCurrentUrl());
+		  	   				 PrintEmpty();
+		   				    	
+		   				    }
+		   				    
+		   				    
+	   				} catch (Exception t){}
+
 	   				    
 	   				}	
-			System.out.println(Arrays.toString(hrefs.toArray()));		
+			System.out.println(Arrays.toString(hrefs.toArray()));	
+		
 	}
 			
 	
@@ -96,24 +105,6 @@ public void beforeMethod() {
 		driver = new ChromeDriver();
 		
 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-		
 }
 
 @AfterClass
