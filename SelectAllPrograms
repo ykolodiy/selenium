@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class SeleniumCodes {
-
+static String [] f = {"http://www.pearsonschool.com/index.cfm?locator=PSZu6e&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&PMDbCategoryid=806&&filter_423=6732","http://www.pearsonschool.com/index.cfm?locator=PSZu6g&filter_423=6732&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&PMDbCategoryid=814&&"};
     static WebDriver driver;
     static List<WebElement> a = new ArrayList<>();
     static List<String> currentPages = new ArrayList<>();
@@ -20,9 +20,10 @@ public class SeleniumCodes {
         System.setProperty("webdriver.chrome.driver", "/Users/vkoloyu/Downloads/chromedriver");
         driver = new ChromeDriver ();
     
-
-//printing current page
-    driver.get("http://www.pearsonschool.com/index.cfm?locator=PSZu6e&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&PMDbCategoryid=806&&filter_423=6732");
+        for (int i=0; i<f.length; i++){
+        
+        //printing current page
+    driver.get(f[i]);
     
     a = driver.findElements(By.tagName("a"));
     for (WebElement e:a) {
@@ -45,6 +46,11 @@ public class SeleniumCodes {
     currentPages.clear();
     System.out.println(Arrays.toString(currentPages.toArray()));
     
+        
+        
+        }
+
+
     
   
     driver.close();
