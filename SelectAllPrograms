@@ -1,4 +1,6 @@
 //Remove the text after comma by using =LEFT(A1,FIND(",",A1)-1).
+
+//sort 0 and 1 =IF(ISNUMBER(FIND("-",A1)),1,0)
 package seleniumcodes;
 
 import java.util.ArrayList;
