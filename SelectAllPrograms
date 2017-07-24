@@ -1,4 +1,4 @@
-
+//Remove the text after comma by using =LEFT(A1,FIND(",",A1)-1).
 package seleniumcodes;
 
 import java.util.ArrayList;
