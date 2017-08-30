@@ -1,5 +1,5 @@
 package playground;
-
+// this code just goes to given url and click any link in it and on others links the same untill it get stuck
 import java.util.List;
 import java.util.Random;
 
