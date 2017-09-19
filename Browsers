@@ -1,0 +1,30 @@
+opera
+	public static void main(String[] args) {
+		System.setProperty("webdriver.opera.driver", "C:\\tmp\\operadriver.exe");
+		
+		OperaOptions oo = new OperaOptions();
+		oo.setBinary("C:\\Users\\vkoloyu\\AppData\\Local\\Programs\\Opera\\launcher.exe");
+		WebDriver driver = new OperaDriver(oo);
+		
+	
+		driver.get("https://weather.com/");
+
+	}
+  
+  ____________________
+  
+  firefox
+      @BeforeMethod
+	    public void setUp() {
+	    	System.setProperty("webdriver.gecko.driver", "C:\\tmp\\geckodriver19.exe");      
+	        DesiredCapabilities caps = DesiredCapabilities.firefox();
+	        LoggingPreferences logPrefs = new LoggingPreferences();
+	        logPrefs.enable(LogType.BROWSER, Level.ALL);
+	        caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+	        driver = new FirefoxDriver(caps);
+	    }
+      ___________________________
+      
+      chrome
+      System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
