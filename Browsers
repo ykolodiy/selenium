@@ -28,3 +28,15 @@ opera
       chrome
       System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
+____________________________
+
+IE
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.ie.driver", "C:\\IEDriverServer.exe");
+		
+		WebDriver driver = new InternetExplorerDriver();
+		driver.manage().window().maximize();
+		driver.navigate().to("http://www.google.com");
+	}
