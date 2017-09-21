@@ -34,6 +34,7 @@ public static void main (String[] args)
     
     //this avoid: Chrome starts with message "You are using an unsupported command-line flag: --ignore-certifcate-errors. Stability and security will suffer."
     //options.addArguments("--test-type");
+    //options.addArguments("--allow-running-insecure-content");   you dont nee to click load insecure script
     
     DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
     desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, options);
