@@ -1,5 +1,7 @@
 /*trying to use beta version of chrome 63 and new chromedriver 2.9
 */
+// enable warnings chrome://flags/#mark-non-secure-as
+
 //chromedrivers https://chromedriver.storage.googleapis.com/index.html
 //chromes https://www.chromium.org/getting-involved/dev-channel
 
