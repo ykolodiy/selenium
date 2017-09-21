@@ -1,0 +1,48 @@
+/*trying to use beta version of chrome 63 and new chromedriver 2.9
+*/
+//chromedrivers https://chromedriver.storage.googleapis.com/index.html
+//chromes https://www.chromium.org/getting-involved/dev-channel
+
+package ConsoleLog;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class Capabilities {
+
+public static void main (String[] args)
+
+	{
+	
+	//settings chrome://flags/#mark-non-secure-as  
+	
+	
+	
+	System.setProperty("webdriver.chrome.driver", "C:\\tmp\\chromedriver232.exe");
+			
+	ChromeOptions options = new ChromeOptions();
+	//v61
+	options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+	
+	//v63Dev
+	//options.setBinary("C:\\Program Files (x86)\\Google\\Chrome Dev\\Application\\chrome.exe");
+	
+	//v63Canary
+   // options.setBinary("C:\\Users\\vkoloyu\\AppData\\Local\\Google\\Chrome SxS\\Application\\chrome.exe");
+    
+    //this avoid: Chrome starts with message "You are using an unsupported command-line flag: --ignore-certifcate-errors. Stability and security will suffer."
+    //options.addArguments("--test-type");
+    
+    DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
+    desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, options);
+
+  
+    
+    					WebDriver driver = new ChromeDriver(desiredCapabilities);
+	
+						driver.manage().window().maximize();
+						driver.get("http://www.pearsonschool.com");
+	}
+}
