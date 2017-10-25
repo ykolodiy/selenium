@@ -1,0 +1,31 @@
+  @AfterMethod
+	  public void afterMethod(ITestResult result) {
+    
+    
+    
+    Do or Print some staff here 
+    
+    
+    
+    
+    	if (result.getStatus() == ITestResult.SUCCESS) {
+				System.out.println("");
+			   } 
+			
+			if (result.getStatus() == ITestResult.FAILURE) {
+				System.out.println(" >>> failed ");
+			   } 
+			
+			if (result.getStatus() == ITestResult.SKIP) {
+				System.out.println(" >>> skipped ");
+			   } 
+    
+    
+    
+    }
+    
+    
+       //  int result = Reporter.getCurrentTestResult().getStatus();
+		  // result = 1 ok 2 failure 3 skip
+		 // System.out.println(">>>" +result);
+		//  System.out.println(ITestResult.SKIP);
