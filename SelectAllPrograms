@@ -1,9 +1,12 @@
-package inventory;
+package crawlers;
 // get list of all programs in ps.com
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +18,7 @@ static String [] f = {"http://www.pearsonschool.com/index.cfm?locator=PSZu68&fil
     static WebDriver driver;
     static List<WebElement> a = new ArrayList<>();
     static List<String> currentPages = new ArrayList<>();
+    static Set<String> set = new HashSet<String>();
     
     public static void main(String[] args) {
     	System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
@@ -33,6 +37,9 @@ static String [] f = {"http://www.pearsonschool.com/index.cfm?locator=PSZu68&fil
     if (k !=null && k.contains("currentPage") ) 
     {
         if (!currentPages.contains(k)) {
+        	
+        	
+        	// add to the array link for See More options
     currentPages.add(k);}}
                          }
     
@@ -41,10 +48,12 @@ static String [] f = {"http://www.pearsonschool.com/index.cfm?locator=PSZu68&fil
     driver.get(j);
     printALLredirect();         }
     
-    System.out.println(Arrays.toString(currentPages.toArray()));
+    //print the array before flash
+   // System.out.println(Arrays.toString(currentPages.toArray()));
     //flush array to use in another cycle
     currentPages.clear();
-    System.out.println(Arrays.toString(currentPages.toArray()));
+  //print the array after flash
+   // System.out.println(Arrays.toString(currentPages.toArray()));
     
         
         
@@ -54,6 +63,12 @@ static String [] f = {"http://www.pearsonschool.com/index.cfm?locator=PSZu68&fil
     
   
     driver.close();
+    
+    
+    set.forEach(System.out::println);
+    
+    
+    
        }
     
     
@@ -62,8 +77,19 @@ static String [] f = {"http://www.pearsonschool.com/index.cfm?locator=PSZu68&fil
          
       List<String> pageSource = new ArrayList<String>(Arrays.asList(driver.getPageSource().split("\n")));
       for (String u:pageSource){
-      if (u.contains("redirect")){
-      System.out.println(u); } }}
+      if (u.contains("redirect") && !u.contains("img id=")){
+      
+    	  set.add(u.substring(9, u.length() - 27).replace("/redirect","https://www.pearsonschool.com/redirect"));
+    	  
+    	  
+    	   //System.out.println(u.substring(9, u.length() - 27).replace("/redirect","https://www.pearsonschool.com/redirect"));
+    	   
+      } 
+      
+      }
+     
+      
+      }
       
       
       
