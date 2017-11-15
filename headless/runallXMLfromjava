@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import org.testng.TestNG;
+
+
+//Use Eclipse Export Wizard. While exporting, select "Create Runnable Jar" and select the class which is entry point (which contains main method) of your project.
+// Select PACKAGE JAR TO JAR,, NOT EXTRACT
+//This class will have main method which will read XML and execute the testcases
+// change xml path to ubuntu
+
+
+
+
+public class runXMLfromHere {
+
+public static void main(String[] args) {
+
+// Create object of TestNG Class
+TestNG runner=new TestNG();
+
+// Create a list of String 
+List<String> suitefiles=new ArrayList<String>();
+
+// Add xml files which you have to execute
+suitefiles.add("C:\\Users\\vkoloyu\\workspace\\JenkinsTestsPS\\testngHeadless.xml");
+//suitefiles.add("/var/lib/jenkins/workspace/java/testngHeadless.xml");
+
+
+// now set xml file for execution
+runner.setTestSuites(suitefiles);
+
+// finally execute the runner using run method
+runner.run();
+}
+
+}
+
+
+
+
+
+
+/* OR
+ * TestListenerAdapter tla = new TestListenerAdapter();
+TestNG testng = new TestNG();
+List<String> testFilesList = new ArrayList<String>();
+testFilesList.add("./testng.xml");
+testng.setTestSuites(testFilesList);
+testng.setUseDefaultListeners(false);
+testng.addListener(tla); 
+testng.run();
+ * 
+ */
