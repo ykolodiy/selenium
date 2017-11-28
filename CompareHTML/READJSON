@@ -1,0 +1,92 @@
+package CompareHTML;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ReadJson {
+
+	public static void main(String[] args) throws Exception {
+		
+		System.setProperty("webdriver.chrome.driver", "c:\\chromedriver.exe");  
+		WebDriver driver = new ChromeDriver();
+			
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.get("https://www.pearsonschool.com");
+			
+			driver.findElement(By.xpath(".//*[@class='navIcon']")).click();
+			Thread.sleep(1000);
+			List<WebElement> links=driver.findElements(By.xpath(".//*[@class='mainMenuOpen']//a"));
+			String [] u = new String [links.size()];
+		
+			for(int i=0;i<links.size();i++)
+			{
+				
+				WebElement ele= links.get(i);
+				String url=ele.getAttribute("href");
+				u[i]=url;
+			}
+			
+			
+	
+		
+	    // READ JASON FROM FILE
+        
+		JSONParser parser = new JSONParser();
+
+        try {
+
+            Object obj = parser.parse(new FileReader("C:\\tmp\\test.json"));
+
+            JSONObject jsonObject = (JSONObject) obj;
+            //System.out.println(jsonObject);
+
+//            String name = (String) jsonObject.get("name");
+//            System.out.println(name);
+
+        
+
+            // loop array
+            JSONArray url = (JSONArray) jsonObject.get("urls");
+            JSONArray source = (JSONArray) jsonObject.get("source");
+            
+            for (int i = 0; i < url.size(); i++) {
+            	
+            	driver.get(u[i]);
+            	
+            	if (url.get(i).equals(driver.getCurrentUrl())){System.out.println(i + "uPass");}
+            	else {System.out.println(i + "" +"urlFailed");}
+            	
+            	if (source.get(i).equals(driver.findElement(By.tagName("body")).getText())){System.out.println(i + "sPass");}
+            	else {System.out.println(i + "" + url.get(i) + "sorceFailed");
+//            System.out.println(source.get(i));
+//            System.out.println("9999");
+//            System.out.println(driver.findElement(By.tagName("body")).getText());
+            	
+            	}
+            
+            	}
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+driver.close();
+	}
+
+}
