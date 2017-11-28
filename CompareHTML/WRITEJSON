@@ -1,0 +1,88 @@
+package CompareHTML;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+
+public class LoopThruMENUandWRITE {
+	
+public static void main (String[] args) throws InterruptedException
+
+	{
+	System.setProperty("webdriver.chrome.driver", "c:\\chromedriver.exe");  
+	WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get("https://www.pearsonschool.com");
+		
+		driver.findElement(By.xpath(".//*[@class='navIcon']")).click();
+		Thread.sleep(1000);
+		List<WebElement> links=driver.findElements(By.xpath(".//*[@class='mainMenuOpen']//a"));
+		String [] u = new String [links.size()];
+		
+		  JSONObject obj = new JSONObject();
+		  JSONArray list = new JSONArray();
+	      JSONArray list2 = new JSONArray();
+	        
+		
+		for(int i=0;i<links.size();i++)
+		{
+			
+			WebElement ele= links.get(i);
+			String url=ele.getAttribute("href");
+			u[i]=url;
+		}
+		
+					for (int y=0; y<u.length; y++)
+						
+					{
+						
+						driver.get(u[y]);
+				//filling the arrays with data url and just text from body
+				   list.add(driver.getCurrentUrl());
+				   list2.add(driver.findElement(By.tagName("body")).getText());
+				
+				
+				
+				
+					 }
+			
+			
+		
+		
+		
+		driver.close();
+		
+		// Saving all arrays to object obj
+		  obj.put("urls", list);
+	      obj.put("source", list2);
+	      
+	      
+	      
+	      // writing to file
+	      try (FileWriter file = new FileWriter("C:\\tmp\\test.json")) {
+
+	            file.write(obj.toJSONString());
+	            file.flush();
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		
+	}
+	
+	
+	
+	
+	
+}
