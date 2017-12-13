@@ -1,0 +1,83 @@
+package brokenlink;
+import java.io.BufferedReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+
+public class BrokenLinkEMPTYTXTFULL {
+	
+public static void main (String[] args) throws Exception
+
+	{
+	System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+	WebDriver driver = new ChromeDriver();
+	
+	
+	try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//lines.txt"))) {
+
+		String line;
+		while ((line = br.readLine()) != null) {
+		
+			driver.get(line);
+			String t = driver.getCurrentUrl();
+			
+			List<WebElement> l=driver.findElements(By.tagName("a"));
+			for(int k=0;k<l.size();k++)
+			{
+				
+				WebElement l2= l.get(k);
+				
+				String url2=l2.getAttribute("href");
+			if (url2 != null && !url2.contains("mailto")) {	verifyLinkActive(url2, t);}
+		
+			}
+		}
+
+			driver.close();
+	} 
+	catch (IOException e) {
+		e.printStackTrace();
+	}}
+	
+	
+	
+public static void verifyLinkActive(String linkUrl, String t)
+{
+    try 
+    {
+       URL url = new URL(linkUrl);
+       
+       HttpURLConnection httpURLConnect=(HttpURLConnection)url.openConnection();
+       
+       httpURLConnect.setConnectTimeout(3000);
+       httpURLConnect.setReadTimeout(10000); 
+       httpURLConnect.connect();
+       
+       
+      
+       
+       if(httpURLConnect.getResponseCode()==200)           {  System.out.print("."); }
+       
+       else           {
+    	   
+    	   
+    	   if (!linkUrl.contains("instagram") && !linkUrl.contains("pinterest")&& !linkUrl.contains("pearsonnacommunity"))
+    	   {
+           System.out.println(linkUrl+" - "+httpURLConnect.getResponseCode() + "  from >>> "+ t);
+    	   }
+       				  }
+       
+     } catch (Exception e) {System.out.println(e.getMessage());}
+} 
+	
+	
+}
