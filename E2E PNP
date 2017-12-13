@@ -1,0 +1,45 @@
+package E2E;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class E2E_pnp {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\tmp\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.pearsonschool.com/index.cfm?locator=PS1t3p");
+		
+		driver.findElement(By.id("prog_input")).sendKeys("60622");
+		Select dropdown = new Select(driver.findElement(By.id("prog_results")));
+		Thread.sleep(1000);
+		dropdown.selectByIndex(2);
+		Thread.sleep(1000);
+		driver.findElement(By.id("prog_input")).sendKeys("math");
+		Thread.sleep(1000);
+		driver.findElement(By.xpath(".//*[@id='prog_results']/li[3]/a")).click();
+		
+		driver.findElement(By.id("cart_quantity1")).sendKeys("4");
+		Thread.sleep(1000);
+		driver.findElement(By.id("cartSubmit")).click();
+		
+		driver.findElement(By.id("cart_quantity1")).clear();
+		
+		driver.findElement(By.id("cart_quantity1")).sendKeys("11");
+		
+		driver.findElement(By.xpath("//button[text()='Update cart']")).click();
+		
+		
+		
+		driver.findElement(By.xpath(".//input[@title='Guest Checkout']")).click();
+		Thread.sleep(1000);
+		if (driver.getTitle().equals("Pearson Education Address Page")){System.out.println("passed");}
+		
+		driver.close();
+		
+	}
+
+}
