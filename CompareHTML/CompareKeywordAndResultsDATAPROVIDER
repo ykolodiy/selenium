@@ -1,0 +1,121 @@
+package Search;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+
+
+
+
+public class CompareKeywordAndResults {
+	WebDriver driver;
+	
+	  @BeforeClass
+	  public void beforeMethod() {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		driver  = new ChromeDriver();;
+	
+	  }
+	
+	
+	
+	
+	
+	
+	@Test(dataProvider="multi-param")
+	public void mytest (String a, int b) throws Exception {
+
+
+		
+		driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2vW2");
+		//driver.findElement(By.id("prog_input")).sendKeys(sheet1.getRow(i).getCell(0).getStringCellValue());
+		
+		driver.findElement(By.id("prog_input")).sendKeys(a);
+		
+		driver.findElement(By.id("prog_submit")).click();
+		
+		
+		String number = driver.findElement(By.xpath("//*[@id='site-content']/div/div/div[5]/div[1]/ul/li[2]")).getText().replaceAll("[^0-9]", "");
+		int resultOLD = b;
+		
+		int intnumber = Integer.parseInt(number);
+		
+		int persentage = (intnumber-resultOLD)/resultOLD;
+				
+		System.out.println(intnumber+">>>"+resultOLD);
+		Assert.assertTrue(!(persentage > 0.05));
+
+
+	}
+		
+	
+	
+	
+    @DataProvider(name="multi-param")
+    public Object[][] dpMultiParam() {
+        return new Object[][]{
+                {"Literacy", 312},
+                {"Math", 16},
+                {"Mathematics", 311},
+                {"Science", 254},
+                {"Social Studies", 169},
+                {"World Languages", 102},
+                {"AP Honors", 369},
+                {"Intervention", 149},
+                {"ELL", 211},
+                {"Career", 320},
+                {"Elementary", 243},
+                {"Middle School", 195},
+                {"High School", 983},
+                {"Common Core", 1218},
+                {"History", 82},
+               
+         
+                			};
+    }
+	
+	
+	
+	
+	
+	
+
+}
+
+
+
+/*
+ * 
+ *  @Test(dataProvider="multi-param")
+    public void multiParameter(String a, int i, long l, boolean b) {
+        System.out.println("String: " + a + ", int: " + i + ", long: " + l + ", boolean: " + b);
+    }
+     
+    @DataProvider(name="multi-param")
+    public Object[][] dpMultiParam() {
+        return new Object[][]{
+                {"a", 1, 10L, true},
+                {"b", 2, 20L, false},
+                {"c", 3, 30L, true},
+                {"d", 4, 40L, false}};
+    }
+}
+ * 
+ * 
+ * 
+ * */
