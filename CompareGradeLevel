@@ -1,0 +1,201 @@
+package CompareHTML;
+
+import static org.testng.Assert.assertEquals;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class CompareGradeLevel {
+	WebDriver driver;
+	
+	  @BeforeClass
+	  public void beforeClass() {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe"); driver  = new ChromeDriver();}
+	
+	  @AfterClass
+	  public void afterClass() {
+		  driver.close();}
+	  
+	  SoftAssert ass = new SoftAssert();
+	  
+	  @Test
+		public void PREK () throws Exception 
+	  {
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2q9d&PMDbSiteId=2781&PMDbSolutionId=6724&PMDbSubSolutionId=&PMDbCategoryId=62122");
+			List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+			String[] basedata = {"Early Childhood (6 results)", "Elementary (5 results)"};
+			
+			System.out.println("PREK");
+			for (int i = 0; i< links.size(); i++) 
+			{
+				//System.out.println(links.get(i).getText() +">"+ basedata[i]);
+				if (!links.get(i).getText().contains(basedata[i])){System.out.println(links.get(i).getText() +">"+ basedata[i]);}
+				
+				
+				
+				ass.assertEquals(links.get(i).getText(), basedata[i]);
+			}
+	   }
+	  
+	  @Test
+		public void ELEMENTARY () throws Exception 
+	  {
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2x4w&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&&filter_423=6731");
+			List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+			String[] basedata = {
+					"Literacy (31 results)", 
+					"Mathematics (13 results)",
+					"Science (11 results)",
+					"Social Studies (9 results)",
+					"World Languages (4 results)",
+					"Supplemental Curriculum (6 results)",
+					"AP® Honors & Electives (1 results)",
+					"Music (2 results)",
+					"ELL (16 results)",
+					"Professional Development Services (65 results)",
+					"College and Career Readiness (3 results)",
+					"Common Core Services (6 results)",
+					"Consulting Services (18 results)",
+					"Pre-K Education (5 results)",
+					"School Improvement Systems (10 results)",
+					"Student Information Systems (1 results)"
+								};
+			System.out.println("ELEMENTARY");
+			for (int i = 0; i< links.size(); i++) 
+			{
+				//System.out.println(links.get(i).getText() +">"+ basedata[i]);
+				if (!links.get(i).getText().contains(basedata[i])){System.out.println(links.get(i).getText() +">"+ basedata[i]);}
+				
+				ass.assertEquals(links.get(i).getText(), basedata[i]);
+			}
+	   }
+
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  @Test
+		public void MIDDLE () throws Exception 
+	  {
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2x4w&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&&filter_423=24902");
+			List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+			String[] basedata = {
+					"Literacy (18 results)",
+					"Mathematics (12 results)",
+					"Science (9 results)",
+					"Social Studies (10 results)",
+					"World Languages (18 results)",
+					"Supplemental Curriculum (6 results)",
+					"AP® Honors & Electives (2 results)",
+					"Music (1 results)",
+					"ELL (18 results)",
+					"Professional Development Services (73 results)",
+					"Career & Technical Education (6 results)",
+					"College and Career Readiness (3 results)",
+					"Common Core Services (9 results)",
+					"Consulting Services (20 results)",
+					"School Improvement Systems (10 results)",
+					"Student Information Systems (1 results)" 
+					
+								};
+			
+			System.out.println("MIDDLE");
+			for (int i = 0; i< links.size(); i++) 
+			{
+				//System.out.println(links.get(i).getText() +">"+ basedata[i]);
+				if (!links.get(i).getText().contains(basedata[i])){System.out.println(links.get(i).getText() +">"+ basedata[i]);}
+				
+				ass.assertEquals(links.get(i).getText(), basedata[i]);
+			}
+	   }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  @Test
+			public void HIGH () throws Exception 
+		  {
+			    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2x4w&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&&filter_423=6732");
+				List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+				String[] basedata = {
+						"Literacy (60 results)",
+						"Mathematics (63 results)",
+						"Science (46 results)",
+						"Social Studies (29 results)",
+						"World Languages (35 results)",
+						"Supplemental Curriculum (4 results)",
+						"AP® Honors & Electives (162 results)",
+						"ELL (20 results)",
+						"Professional Development Services (62 results)",
+						"Career & Technical Education (202 results)",
+						"College and Career Readiness (33 results)",
+						"Common Core Services (6 results)",
+						"Consulting Services (25 results)",
+						"School Improvement Systems (10 results)",
+						"Student Information Systems (1 results)"
+									};
+				
+				System.out.println("HIGH");
+				for (int i = 0; i< links.size(); i++) 
+				{
+					//System.out.println(links.get(i).getText() +">"+ basedata[i]);
+					if (!links.get(i).getText().contains(basedata[i])){System.out.println(links.get(i).getText() +">"+ basedata[i]);}
+					
+					ass.assertEquals(links.get(i).getText(), basedata[i]);
+				}
+		   }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  @Test
+		public void APHONOR () throws Exception 
+	  {
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PSZu6t&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&PMDbCategoryid=811&&");
+			List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+			String[] basedata = {
+					"Science (28 results)",
+					"Math (53 results)",
+					"Social Studies (13 results)",
+					"Language Arts (52 results)",
+					"World Languages (16 results)",
+					"Computer Science (3 results)",
+					"AP® Programs (32 results)",
+					"AP® English Literature and Composition (5 results)",
+					"MathXL for School/MyMathLab (3 results)"
+								};
+			
+			System.out.println("APHONOR");
+			for (int i = 0; i< links.size(); i++) 
+			{
+				//System.out.println(links.get(i).getText() +">"+ basedata[i]);
+				if (!links.get(i).getText().contains(basedata[i])){System.out.println(links.get(i).getText() +">"+ basedata[i]);}
+				
+				ass.assertEquals(links.get(i).getText(), basedata[i]);
+			}
+	   }
+	  
+	
+			
+
+	}
