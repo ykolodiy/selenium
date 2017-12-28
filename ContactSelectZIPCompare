@@ -1,0 +1,82 @@
+package ContactPS;
+
+// it checks Contact > School, District, Non-Profit, Corrections or Juvenile Organization > 
+//  Enter ZIP or City and compare how much schools in it
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class SelectZIP {
+
+
+	
+	  @Test(dataProvider="multi-param")
+		public void mytest (String zip, int schools) throws Exception {
+		  WebDriver driver;
+		  System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe"); driver  = new ChromeDriver();
+			
+		SoftAssert ass = new SoftAssert();
+		 
+		
+		
+		//open home page
+		driver.get("http://www.pearsonschool.com/index.cfm?locator=PSZ13f");
+		
+		//click Contact your sales rep
+		driver.findElement(By.xpath("//a[@class='contactIcon']")).click();
+		
+		
+		//click School, District, Non-Profit, Corrections or Juvenile Organization
+		driver.findElement(By.id("rf_contactSalesRep")).click();
+	
+		WebDriverWait wait = new WebDriverWait(driver, 9);
+		WebElement contactrep = wait.until(ExpectedConditions.elementToBeClickable(By.id("rf_usRepFinder")));
+				contactrep.click();
+		
+		WebElement zipcode = wait.until(ExpectedConditions.elementToBeClickable(By.name("cityOrZip")));
+		zipcode.sendKeys(zip);
+		// get list of all institutes
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("rf_usRepInstitutes")));
+		Select dropdown = new Select(driver.findElement(By.id("rf_usRepInstitutes")));
+		List<WebElement> i = dropdown.getOptions();
+		// real amount of schools - 2 elect Institution+I don't see my school
+		int AmmountofSchools = i.size()-2;
+		// System.out.println("number of schools: " +(i.size()-2));
+		ass.assertEquals(AmmountofSchools, schools);
+		
+
+		driver.close();
+
+		
+	}
+	  
+	  
+	  
+	  
+	    @DataProvider(name="multi-param")
+	    public Object[][] dpMultiParam() {
+	        return new Object[][]{
+	                {"60622", 28},
+	                {"dallas", 530},
+	                {"90001", 24},
+	                {"chicago", 1159},
+	                {"60641", 20}
+	          
+				};
+	    }
+	  
+	  
+	  
+	  
+	  
+}
