@@ -1,0 +1,67 @@
+
+
+
+
+package SiteMapXML;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+
+public class XMLfromLIST {
+
+	public static void main(String[] args) throws Exception, IOException {
+		
+		Set<String> hset = new HashSet<String>();
+		
+		
+		try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//lii.txt"))) {
+
+			String line;
+			while ((line = br.readLine()) != null) {
+			
+				hset.add(line);
+				
+			}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		// print to console sitemap.xml
+		
+		  System.out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">");
+		  
+			
+			for (String mm : hset)
+			{
+				
+			System.out.println("<url>");	
+			
+					System.out.print("<loc>");
+			                     System.out.print(mm);
+			    System.out.println("</loc>");
+				System.out.println("<priority>1</priority>");
+				System.out.println("<changefreq>monthly</changefreq>");
+				System.out.println("</url>");
+		
+			}
+			
+			System.out.println("</urlset>");
+		
+		
+		
+		
+		
+	}
+
+	}}
