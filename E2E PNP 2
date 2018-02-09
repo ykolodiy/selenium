@@ -1,0 +1,71 @@
+package E2E;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class E2EPNP2 {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "C:\\tmp\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+	driver.get("https://www.pearsonschool.com/index.cfm?locator=PS1t3p");
+	
+	driver.findElement(By.name("prog_input")).sendKeys("chicago");
+	
+	WebDriverWait wait = new WebDriverWait(driver, 20);
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@name='prog_id']//option[@value='12012065']")));
+	
+	Select dropdown= new Select(driver.findElement(By.name("prog_id")));
+
+	dropdown.selectByVisibleText("5 PEAS IN A POD LEARNING ACAD");
+	
+	driver.findElement(By.id("prog_input")).sendKeys("math");
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Blitzer, Thinking Mathematically 7th edition ©2019 (2019)")));
+	
+	driver.findElement(By.linkText("Blitzer, Thinking Mathematically 7th edition ©2019 (2019)")).click();
+	
+	driver.findElement(By.name("cart_quantity1")).sendKeys("1");
+	driver.findElement(By.name("cart_quantity2")).sendKeys("2");
+	driver.findElement(By.name("cart_quantity3")).sendKeys("3");
+	driver.findElement(By.name("cart_quantity4")).sendKeys("4");
+	
+	driver.findElement(By.name("cartSubmit")).click();
+	System.out.println(driver.findElement(By.id("cartSubTotal")).getText());
+	
+	
+	driver.findElement(By.linkText("Thinking Mathematically 7e ?2019 w1yr MM")).click();
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//p/a[@class='aButton buttonArrowRight']")));
+	driver.findElement(By.xpath("//a[@class='aButton buttonArrowRight']")).click();
+	
+	
+	driver.findElement(By.id("cartSubmit")).click();
+	
+	driver.findElement(By.name("cart_quantity1")).clear();
+	driver.findElement(By.name("cart_quantity1")).sendKeys("4");
+	driver.findElement(By.xpath("//button[@class='addToCart fieldTapped']")).click();
+	
+	driver.findElement(By.name("cart_quantity2")).clear();
+	driver.findElement(By.name("cart_quantity2")).sendKeys("3");
+	driver.findElement(By.xpath("//button[@class='addToCart fieldTapped']")).click();
+	
+	driver.findElement(By.name("cart_quantity3")).clear();
+	driver.findElement(By.name("cart_quantity3")).sendKeys("2");
+	driver.findElement(By.xpath("//button[@class='addToCart fieldTapped']")).click();
+	
+	driver.findElement(By.name("cart_quantity4")).clear();
+	driver.findElement(By.name("cart_quantity4")).sendKeys("1");
+	driver.findElement(By.xpath("//button[@class='addToCart fieldTapped']")).click();
+	
+	System.out.println(driver.findElement(By.id("cartSubTotal")).getText());
+	driver.findElement(By.xpath("//input[@title='Guest Checkout']")).click();
+	
+	
+	driver.close();
+	}
+
+}
