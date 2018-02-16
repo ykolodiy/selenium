@@ -1,0 +1,47 @@
+package MobileFriendly;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class isMobileFriendly {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		
+		try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//homeschoollinksformobilescan.txt"))) {
+		   
+			String line;
+			while ((line = br.readLine()) != null) {
+			
+				
+				
+				driver.get("https://search.google.com/test/mobile-friendly");
+				
+				driver.findElement(By.xpath("//input[@type='url']")).sendKeys(line);
+				driver.findElement(By.xpath("//div[@class='UfBne']")).click();
+				
+				Thread.sleep(5000);
+				WebDriverWait wait = new WebDriverWait(driver, 35);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'N5SJAd')")));
+System.out.println(driver.findElement(By.xpath("//div[contains(@class, 'N5SJAd')")).getText());
+
+			}
+
+				driver.close();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
