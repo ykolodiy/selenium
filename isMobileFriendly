@@ -17,8 +17,9 @@ public class isMobileFriendlieMOBI {
 	public static void main(String[] args) throws Exception {
 		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
-	
-		try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//homeschoollinksformobilescan.txt"))) {
+		
+		
+		try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//sa.txt"))) {
 		   int k =1;
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -27,7 +28,7 @@ public class isMobileFriendlieMOBI {
 				driver.findElement(By.id("test_url")).sendKeys(line);
 				driver.findElement(By.id("go")).click();
 				
-				WebDriverWait wait = new WebDriverWait(driver, 60);
+				WebDriverWait wait = new WebDriverWait(driver, 120);
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Click on a test below to view its details and recommended actions')]")));
 
 				List<WebElement> links=driver.findElements(By.xpath("//li[@class='fail']"));
@@ -40,6 +41,11 @@ public class isMobileFriendlieMOBI {
 				}
 				System.out.println();
 				k=k+1;
+				
+				System.out.println(driver.findElement(By.xpath("//div[@class='popover fade top in']//p[@id='bellBalloon']")).getText());
+				
+				
+				
 			}
 				driver.close();
 		} 
