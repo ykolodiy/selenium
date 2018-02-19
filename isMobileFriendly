@@ -17,8 +17,7 @@ public class isMobileFriendlieMOBI {
 	public static void main(String[] args) throws Exception {
 		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
-		
-		
+	
 		try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//homeschoollinksformobilescan.txt"))) {
 		   int k =1;
 			String line;
