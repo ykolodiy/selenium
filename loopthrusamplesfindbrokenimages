@@ -1,0 +1,69 @@
+package onlinesamples;
+//and find no book covers
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class loopthrustates {
+// and find no book covers
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+			
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			
+			driver.get("https://www.pearsonschool.com/index.cfm?locator=PS1zJo");
+			driver.findElement(By.xpath("//*[@id='PS5stateLink']")).click();
+			Select dropDown1 = new Select(driver.findElement(By.name("stateCodeId")));
+			List<WebElement> e1 = dropDown1.getOptions();
+			int itemCount1 = e1.size();			
+			String [] d = new String [itemCount1];
+for(int l = 1; l <(itemCount1); l++)
+{
+    d[l]= e1.get(l).getText();
+}
+
+
+	for (int z=1; z<itemCount1; z++){
+			driver.get("https://www.pearsonschool.com/index.cfm?locator=PS1zJo");
+			driver.findElement(By.xpath("//*[@id='PS5stateLink']")).click();
+			Select dropDown = new Select(driver.findElement(By.name("stateCodeId")));
+			dropDown.selectByVisibleText(d[z]);
+			driver.findElement(By.xpath("//input[@value='Go']")).click();
+			Thread.sleep(1500);
+			
+			List<WebElement> imgs=driver.findElements(By.tagName("img"));
+			
+			for(int i=0;i<imgs.size();i++)
+			{
+				
+				WebElement ele= imgs.get(i);
+				
+			String url=ele.getAttribute("src");
+			if(url.equals("https://assets.pearsonschool.com/prodImages/")){System.out.println(z);}
+			
+				
+			}
+			
+			
+									}		
+	
+
+
+
+
+
+
+
+
+//driver.close();
+
+	}
+
+}
