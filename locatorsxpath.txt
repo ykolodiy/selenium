@@ -42,3 +42,10 @@ driver.findElement(By.xpath("//button[@title='Proceed to Checkout']")).click();
 In the list of all mobile , select ?SORT BY? dropdown as ?name?		
 	    new Select(driver.findElement(By.cssSelector("select[title=\"Sort By\"]"))).selectByVisibleText("Name");
 	    
+	    
+	    
+	    //System.out.println(driver.findElement(By.xpath("//li[contains(text(), 'b')]/preceding-sibling::li[1]")).getText());
+//System.out.println(driver.findElement(By.xpath("//li[contains(text(), 'b')]/following-sibling::li[1]")).getText());
+
+	
+	    
