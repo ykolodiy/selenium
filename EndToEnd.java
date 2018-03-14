@@ -39,12 +39,21 @@ public class EndToEnd {
 			//press enter
 			driver.findElement(By.xpath("//*[@id='prog_input_header']")).sendKeys(Keys.RETURN);
 			Thread.sleep(2000);
+					/*  OLD template
 			//select 1st value shown
 			driver.findElement(By.xpath("//*[@class='programRollupDisplay']//li[1]/div/a")).click();
 			Thread.sleep(2000);
 			//click overlay proceed to the page
 			driver.findElement(By.xpath("//*[@class='aButton buttonArrowRight']")).click();
 			Thread.sleep(1000);
+			
+			*/
+			
+			
+			driver.findElement(By.xpath("//*[@id='tabwrap']/div/div[1]/div/ul/li[1]/div/a")).click();
+			Thread.sleep(2000);
+			driver.findElement(By.id("programOverlayMountPoint")).click();
+			Thread.sleep(2000);
 			
 			
 			System.out.println("Program name: " +driver.findElement(By.xpath(".//*[@class='productName']/a")).getText());
