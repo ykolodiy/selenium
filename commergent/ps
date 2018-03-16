@@ -1,0 +1,75 @@
+package testingcommergent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class teststaging {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://s.pearsonschool.com/");
+		
+		driver.findElement(By.name("uname")).sendKeys("");
+		driver.findElement(By.name("pword")).sendKeys("");
+		driver.findElement(By.name("button01")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[@id='PSCRAT_page_area']/div[3]/div[2]/div[1]/div/div[2]/div[1]/span")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.linkText("Pearson School")).click();
+		Thread.sleep(1000);
+		driver.get("https://s.pearsonschool.com");
+		
+		
+		driver.findElement(By.xpath("//a[@class='searchIcon']")).click();
+		driver.findElement(By.name("q")).sendKeys("9780838449349");
+		Thread.sleep(1000);
+		String j = driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).getText();
+	    // get name
+		System.out.println(j);
+	    driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).click();
+	    
+	 // get rest of info
+	    String a = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[1]")).getText();
+	    String b = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[2]")).getText();
+	    String c = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[3]")).getText();
+	    String d = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[4]")).getText();
+	    
+	    System.out.println(a+" "+b+" "+c+" "+d);
+	    
+	 //enter 1 amount
+	   
+	    driver.findElement(By.xpath("//div[@class='prodName c4 descriptionShown']/following-sibling::div[3]//input[@type='number']")).sendKeys("1");
+	 //submit
+	    driver.findElement(By.id("cartSubmit")).click();
+	    
+	    driver.get(driver.getCurrentUrl()+"&debu=");
+	    
+	    
+	    
+	    String e = driver.findElement(By.xpath("//div[@id='prodItem_5205']//div[1]")).getText();
+	    String f = driver.findElement(By.xpath("//div[@id='prodItem_5205']//div[2]")).getText();
+	    String g = driver.findElement(By.xpath("//div[@id='prodItem_5205']//div[3]")).getText();
+	    String h = driver.findElement(By.xpath("//div[@id='prodItem_5205']//div[4]//input[@id='cart_quantity1']")).getAttribute("value");
+	    String i = driver.findElement(By.xpath("//div[@id='prodItem_5205']//div[5]")).getText();
+	    System.out.println(e+" "+f+" "+g+" "+h+" "+i);
+	    driver.findElement(By.linkText("Checkout")).click();
+	    Thread.sleep(1000);
+	    //here in staging u see stringxml code
+	    
+	    
+	    System.out.println(driver.findElement(By.name("justTesting")).getText());
+	    driver.findElement(By.xpath("//input[@value='Guest Checkout']")).click();
+	    
+	    
+	    
+	    
+	    if (driver.getTitle().contains("Pearson Education Address Page")){
+	    	driver.close();
+	    	System.out.println("PASSED");
+	    }
+	    
+	}
+
+}
