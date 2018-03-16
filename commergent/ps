@@ -50,8 +50,8 @@ public class ps {
 				driver.findElement(By.name("q")).sendKeys(line);
 				Thread.sleep(1000);
 				String j = driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).getText();
-			    // get name
-				System.out.println(j);
+			    // get isbn
+					System.out.println(j.substring(j.length()-14, j.length()-1));
 			    driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).click();
 			    
 			 // get rest of info
