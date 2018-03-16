@@ -75,7 +75,7 @@ public class ps {
 
 			    Actions actions = new Actions(driver);
 
-			    actions.moveToElement(element).click().perform();
+			    actions.moveToElement(element).perform();
 			    
 			    Thread.sleep(1000);
 			   driver.findElement(By.xpath("//input[@id='cartSubmit']")).click();
