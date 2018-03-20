@@ -1,0 +1,77 @@
+package writeExcel;
+// tut chytajem excel
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Locale;
+
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class states {
+
+	
+	
+		
+		
+public static void main (String[] args) throws Exception
+
+
+	{
+	//list of states
+	 String[] s = {"AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","GU","HI","IA","ID", "IL","IN","KS","KY","LA","MA","MD","ME","MH","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY", "OH","OK","OR","PA","PR","PW","RI","SC","SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"};
+	//this will sum all revenue
+	 int k =0;
+	 //loop thru states
+	 for (int j = 0; j < s.length; j++) {
+		 //pass state name in f variable
+		    String f = s[j];
+		
+	// just to handle string from xls file
+	DataFormatter formatter = new DataFormatter(Locale.US);		
+	// apache POI
+			//locate file
+			File src = new File ("C:\\tmp\\states.xlsx");
+			//input stream class
+			FileInputStream fis = new FileInputStream (src);
+			//load full workbook XSSF by xlsx
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			//focus on sheet1 index0
+			XSSFSheet sheet1 = wb.getSheetAt(0);
+		//row1 col1
+		
+//how many rows?
+			int rowcount = sheet1.getLastRowNum();
+			//System.out.println(rowcount);
+			//System.out.println(data);
+			
+			//loop thru all rows
+			for (int i=5; i<=rowcount; i++)
+			{       
+				
+				
+				String state = formatter.formatCellValue(sheet1.getRow(i).getCell(2));
+				int sell = (int) sheet1.getRow(i).getCell(22).getNumericCellValue();
+				
+			if (state.contains(f)){
+				//System.out.println(sell);
+				k = k + sell;
+			
+				
+				
+			}
+			
+			}
+			System.out.println(f+","+k);
+			
+	k=0;
+		
+		
+ 
+}
+	
+		
+	}
+
+}
