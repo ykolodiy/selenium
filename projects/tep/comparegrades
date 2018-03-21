@@ -1,0 +1,125 @@
+package tepCommergent;
+
+//compare grade levels
+
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class CompareGrades {
+	WebDriver driver;
+	
+	  @BeforeClass
+	  public void beforeClass() {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe"); driver  = new ChromeDriver();}
+	
+	  @AfterClass
+	  public void afterClass() {
+		  driver.close();}
+	  
+	  SoftAssert ass = new SoftAssert();
+	  
+	  @Test
+		public void PREK () throws Exception 
+	  {
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2q9d&PMDbSiteId=2781&PMDbSolutionId=6724&PMDbSubSolutionId=&PMDbCategoryId=62122");
+			List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+		
+			
+			System.out.println("PREK");
+			for (int i = 0; i< links.size(); i++) 
+			{
+			
+				System.out.println(links.get(i).getText());
+				
+				
+			}
+	   }
+	   
+	  
+	  @Test
+		public void ELEMENTARY () throws Exception 
+	  {
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2x4w&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&&filter_423=6731");
+			List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+
+			System.out.println("ELEMENTARY");
+			for (int i = 0; i< links.size(); i++) 
+			{
+				
+				System.out.println(links.get(i).getText());
+				
+				
+			}
+	   }
+
+
+	  
+	  
+	  @Test
+		public void MIDDLE () throws Exception 
+	  {
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2x4w&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&&filter_423=24902");
+			List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+
+			
+			System.out.println("MIDDLE");
+			for (int i = 0; i< links.size(); i++) 
+			{
+			
+				System.out.println(links.get(i).getText());
+				
+				
+			}
+	   }
+	  
+
+	  
+	  @Test
+			public void HIGH () throws Exception 
+		  {
+			    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2x4w&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&&filter_423=6732");
+				List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+			
+				
+				System.out.println("HIGH");
+				for (int i = 0; i< links.size(); i++) 
+				{
+				
+					System.out.println(links.get(i).getText());
+					
+					
+				}
+		   }
+	  
+
+	  
+	  @Test
+		public void APHONOR () throws Exception 
+	  {
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PSZu6t&PMDbSiteid=2781&PMDbSolutionid=6724&PMDbSubSolutionid=&PMDbCategoryid=811&&");
+			List<WebElement> links=driver.findElements(By.xpath("//*[@class='framedContentAreaTitleContent']/h3"));
+	
+			
+			System.out.println("APHONOR");
+			for (int i = 0; i< links.size(); i++) 
+			{
+		
+				System.out.println(links.get(i).getText());
+				
+				
+			}
+	   }
+	  
+	
+			
+
+	}
+
+
