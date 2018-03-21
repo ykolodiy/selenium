@@ -1,9 +1,15 @@
 package tepCommergent;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,53 +22,72 @@ public class psOASIS {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\vkoloyu\\Downloads\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
+		
+		//setup excel file
+	
+		
+		 FileInputStream fis = new FileInputStream("C:\\Users\\vkoloyu\\Projects\\testingCommergent\\results.xlsx");
+		 XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		 XSSFSheet sheet = workbook.getSheetAt(0);
+		
+		
+		
+		
+		
+		
+ int z= 0;
+		
+		
+		
+		
 		try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\testingCommergent\\listpsoasis.txt"))) {
 	     
 			String line;
 			while ((line = br.readLine()) != null) {
-				driver.get("https://pearsonschool.com");
+				driver.get("https://staging.pearsonschool.com");
+				
+					//login if first time run
 				if (driver.findElements(By.name("uname")).size() > 0)
-				{
-			
-				driver.findElement(By.name("uname")).sendKeys("");
-				driver.findElement(By.name("pword")).sendKeys("");
-				driver.findElement(By.name("button01")).click();
-				Thread.sleep(1000);
-				driver.findElement(By.xpath("//*[@id='PSCRAT_page_area']/div[3]/div[2]/div[1]/div/div[2]/div[1]/span")).click();
-				Thread.sleep(1000);
-				driver.findElement(By.linkText("Pearson School")).click();
-				Thread.sleep(1000);
-				}
+					{
+					driver.findElement(By.name("uname")).sendKeys("vkoloyu");
+					driver.findElement(By.name("pword")).sendKeys("Pearson24");
+					driver.findElement(By.name("button01")).click();
+					Thread.sleep(1000);
+					driver.findElement(By.xpath("//*[@id='PSCRAT_page_area']/div[3]/div[2]/div[1]/div/div[2]/div[1]/span")).click();
+					Thread.sleep(1000);
+					driver.findElement(By.linkText("Pearson School")).click();
+					Thread.sleep(1000);
+					}
 				
 				
 				
 				else{
-				//remove cart
-				driver.get("https://staging.pearsonschool.com/index.cfm?locator=PSZ3Dd&elementType=Cart&csURL=%2F%2Fstaging%2Epearsonschool%2Ecom%2Findex%2Ecfm&csURLVars=");
-				driver.findElement(By.id("cart_quantity1")).clear();
-				driver.findElement(By.id("cart_quantity1")).sendKeys("0");
-				driver.findElement(By.xpath("//button[contains(text(),'Update cart')]")).click();
-				}
+					//remove cart
+					driver.get("https://staging.pearsonschool.com/index.cfm?locator=PSZ3Dd&elementType=Cart&csURL=%2F%2Fstaging%2Epearsonschool%2Ecom%2Findex%2Ecfm&csURLVars=");
+					driver.findElement(By.id("cart_quantity1")).clear();
+					driver.findElement(By.id("cart_quantity1")).sendKeys("0");
+					driver.findElement(By.xpath("//button[contains(text(),'Update cart')]")).click();
+					}
 				
-				driver.get("https://pearsonschool.com");
+					driver.get("https://staging.pearsonschool.com");
 				
-				driver.findElement(By.xpath("//a[@class='searchIcon']")).click();
-				driver.findElement(By.name("q")).sendKeys(line);
-				Thread.sleep(1000);
-				String j = driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).getText();
-			    // get isbn
+					driver.findElement(By.xpath("//a[@class='searchIcon']")).click();
+					driver.findElement(By.name("q")).sendKeys(line);
+					Thread.sleep(1000);
+					String j = driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).getText();
+			   
+				// get isbn
+					String isbn = j.substring(j.length()-14, j.length()-1);
+					System.out.println(isbn);
 				
-				
-				System.out.println(j.substring(j.length()-14, j.length()-1));
-				
-			    driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).click();
+					driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).click();
 			    
-			 // get rest of info
+			 // get rest of info from product components
 			    String a = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[1]")).getText();
 			    String b = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[2]")).getText();
 			    String c = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[3]")).getText();
 			    String d = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[4]")).getText();
-			    
+			 // print product componennts info   
 			    System.out.println(a+" "+b+" "+c+" "+d);
 			    
 			 //enter 1 amount
@@ -85,7 +110,7 @@ public class psOASIS {
 			    
 			    Thread.sleep(3000);
 			    
-			    driver.get(driver.getCurrentUrl()+"");
+			    driver.get(driver.getCurrentUrl()+"&debugging=1&jmawer=1");
 			    
 			    Thread.sleep(3000);
 			    
@@ -94,13 +119,63 @@ public class psOASIS {
 			    String g = driver.findElement(By.xpath("//div[contains(@id,'prodItem')]//div[3]")).getText();
 			    String h = driver.findElement(By.xpath("//div[contains(@id,'prodItem')]//div[4]//input[@id='cart_quantity1']")).getAttribute("value");
 			    String i = driver.findElement(By.xpath("//div[contains(@id,'prodItem')]//div[5]")).getText();
+			    
+			    //print cart info
 			    System.out.println(e+" "+f+" "+g+" "+h+" "+i);
+			    
+
+			    
+			    
 			    driver.findElement(By.linkText("Checkout")).click();
 			    Thread.sleep(1000);
 			    //here in staging u see stringxml code
 			    
 			    
 			    System.out.println(driver.findElement(By.name("justTesting")).getText());
+			    
+			    
+			    
+			    //write to excel
+			    
+			    Row row = sheet.createRow(z);
+			  //isbn
+			    Cell cell0 = row.createCell(0);
+			    cell0.setCellValue(isbn);
+			   //smlsctring 
+			    Cell cell1 = row.createCell(1);
+			    cell1.setCellValue(driver.findElement(By.name("justTesting")).getText());
+			    //price
+			    Cell cell2 = row.createCell(2);
+			    cell2.setCellValue(a);
+			    //name invoice
+			    Cell cell3 = row.createCell(3);
+			    cell3.setCellValue(b);
+			    Cell cell4 = row.createCell(4);
+			    cell4.setCellValue(c);
+			    Cell cell5 = row.createCell(5);
+			    cell5.setCellValue(d);
+			    Cell cell6 = row.createCell(6);
+			    cell6.setCellValue(e);
+			    Cell cell7 = row.createCell(7);
+			    cell7.setCellValue(f);
+			    Cell cell8 = row.createCell(8);
+			    cell8.setCellValue(g);
+			    Cell cell9 = row.createCell(9);
+			    cell9.setCellValue(h);
+			    Cell cell10 = row.createCell(10);
+			    cell10.setCellValue(i);
+			    
+			    
+			    
+			    z=z+1;
+			    
+			    FileOutputStream fos = new FileOutputStream("C:\\Users\\vkoloyu\\Projects\\testingCommergent\\results.xlsx");
+			    workbook.write(fos);
+			    fos.close();
+			    
+			    
+			    
+			    
 			    driver.findElement(By.xpath("//input[@value='Register Checkout']")).click();
 			    
 			    
@@ -122,7 +197,11 @@ public class psOASIS {
 		} 
 		catch (IOException e) {
 			e.printStackTrace();
-		}}
+		}
+		
+		workbook.close();
+	driver.close();
+	}
 		
 
 	}
