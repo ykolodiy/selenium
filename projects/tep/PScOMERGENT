@@ -1,0 +1,209 @@
+package tepCommergent;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class PsCommergent {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\vkoloyu\\Downloads\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		
+		//setup excel file
+		
+		
+		 FileInputStream fis = new FileInputStream("C:\\Users\\vkoloyu\\Projects\\testingCommergent\\results.xlsx");
+		 XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		 XSSFSheet sheet = workbook.getSheetAt(2);
+		
+		 int z= 0;
+		
+		
+		
+		
+		try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\testingCommergent\\listpsComer.txt"))) {
+	     
+			String line;
+			while ((line = br.readLine()) != null) {
+				driver.get("https://.pearsonschool.com");
+				if (driver.findElements(By.name("uname")).size() > 0)
+				{
+			
+				driver.findElement(By.name("uname")).sendKeys("");
+				driver.findElement(By.name("pword")).sendKeys("");
+				driver.findElement(By.name("button01")).click();
+				Thread.sleep(1000);
+				driver.findElement(By.xpath("//*[@id='PSCRAT_page_area']/div[3]/div[2]/div[1]/div/div[2]/div[1]/span")).click();
+				Thread.sleep(1000);
+				driver.findElement(By.linkText("Pearson School")).click();
+				Thread.sleep(1000);
+				}
+				
+				
+				
+				else{
+				//remove cart
+				driver.get("https://.pearsonschool.com/index.cfm?locator=PSZ3Dd&elementType=Cart&csURL=%2F%2Fstaging%2Epearsonschool%2Ecom%2Findex%2Ecfm&csURLVars=");
+				driver.findElement(By.id("cart_quantity1")).clear();
+				driver.findElement(By.id("cart_quantity1")).sendKeys("0");
+				driver.findElement(By.xpath("//button[contains(text(),'Update cart')]")).click();
+				}
+				
+				driver.get("https://staging.pearsonschool.com");
+				
+				driver.findElement(By.xpath("//a[@class='searchIcon']")).click();
+				driver.findElement(By.name("q")).sendKeys(line);
+				Thread.sleep(1000);
+				String j = driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).getText();
+			    // get isbn
+				
+				String isbn = j.substring(j.length()-14, j.length()-1);
+				System.out.println(isbn);
+				
+				
+			    driver.findElement(By.xpath("//div[@id='prog_results_header_div_append']//ul[2]/li/a")).click();
+			    
+			 // get rest of info
+			    String a = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[1]")).getText();
+			    String b = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[2]")).getText();
+			    String c = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[3]")).getText();
+			    String d = driver.findElement(By.xpath("//div[@class='prodDescriptionInner']//p[4]")).getText();
+			    
+			    System.out.println(a+" "+b+" "+c+" "+d);
+			    
+			 //enter 1 amount
+			   
+			    driver.findElement(By.xpath("//div[@class='prodName c4 descriptionShown']/following-sibling::div[3]//input[@type='number']")).sendKeys("1");
+			 //submit
+			    Thread.sleep(1000);
+			    
+			    
+			    //this fucking button so in a bottom lets move into it
+			    
+			    WebElement element = driver.findElement(By.xpath("//input[@id='cartSubmit']"));
+			    Actions actions = new Actions(driver);
+			    actions.moveToElement(element).perform();
+			    
+			    
+			    
+			  Thread.sleep(1000);
+			 driver.findElement(By.xpath("//input[@id='cartSubmit']")).click();
+			    
+			    Thread.sleep(3000);
+			    
+			    driver.get(driver.getCurrentUrl()+"&d");
+			    
+			    Thread.sleep(3000);
+			    
+			    String e = driver.findElement(By.xpath("//div[contains(@id,'prodItem')]//div[1]")).getText();
+			    String f = driver.findElement(By.xpath("//div[contains(@id,'prodItem')]//div[2]")).getText();
+			    String g = driver.findElement(By.xpath("//div[contains(@id,'prodItem')]//div[3]")).getText();
+			    String h = driver.findElement(By.xpath("//div[contains(@id,'prodItem')]//div[4]//input[@id='cart_quantity1']")).getAttribute("value");
+			    String i = driver.findElement(By.xpath("//div[contains(@id,'prodItem')]//div[5]")).getText();
+			    System.out.println(e+" "+f+" "+g+" "+h+" "+i);
+			    driver.findElement(By.linkText("Checkout")).click();
+			    Thread.sleep(1000);
+			    //here in staging u see stringxml code
+			    
+			    
+			    System.out.println(driver.findElement(By.name("justTesting")).getText());
+			    
+			    
+	    //write to excel
+			    
+			    Row row = sheet.createRow(z);
+			  //isbn
+			    Cell cell0 = row.createCell(0);
+			    cell0.setCellValue(isbn);
+			   //smlsctring 
+			    Cell cell1 = row.createCell(1);
+			    cell1.setCellValue(driver.findElement(By.name("justTesting")).getText());
+			    //price
+			    Cell cell2 = row.createCell(2);
+			    cell2.setCellValue(a);
+			    //name invoice
+			    Cell cell3 = row.createCell(3);
+			    cell3.setCellValue(b);
+			    Cell cell4 = row.createCell(4);
+			    cell4.setCellValue(c);
+			    Cell cell5 = row.createCell(5);
+			    cell5.setCellValue(d);
+			    Cell cell6 = row.createCell(6);
+			    cell6.setCellValue(e);
+			    Cell cell7 = row.createCell(7);
+			    cell7.setCellValue(f);
+			    Cell cell8 = row.createCell(8);
+			    cell8.setCellValue(g);
+			    Cell cell9 = row.createCell(9);
+			    cell9.setCellValue(h);
+			    Cell cell10 = row.createCell(10);
+			    cell10.setCellValue(i);
+			    
+			    
+			    
+			    z=z+1;
+			    
+			    FileOutputStream fos = new FileOutputStream("C:\\Users\\vkoloyu\\Projects\\testingCommergent\\results.xlsx");
+			    workbook.write(fos);
+			    fos.close();
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    driver.findElement(By.xpath("//input[@value='Guest Checkout']")).click();
+			    
+			    
+			    
+			    
+			    if (driver.getTitle().contains("Pearson Education Address Page")){
+			    	//driver.close();
+			    	System.out.println("PASSED");
+			    }
+				
+				
+				
+				
+				
+				
+			}
+
+				
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		workbook.close();
+	driver.close();
+	
+	}
+		
+
+	}
