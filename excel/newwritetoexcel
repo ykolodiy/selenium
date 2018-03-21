@@ -1,0 +1,30 @@
+package writeExcel;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+ 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+ 
+public class newwritetoexcel {
+ 
+ public static void main (String [] args) throws IOException{
+ //create an object of Workbook and pass the FileInputStream object into it to create a pipeline between the sheet and eclipse.
+ FileInputStream fis = new FileInputStream("C:\\Users\\vkoloyu\\a.xlsx");
+ XSSFWorkbook workbook = new XSSFWorkbook(fis);
+ XSSFSheet sheet = workbook.getSheetAt(0);
+
+ Row row = sheet.createRow(0);
+ Cell cell = row.createCell(0);
+ cell.setCellValue("suck");
+ 
+ FileOutputStream fos = new FileOutputStream("C:\\Users\\vkoloyu\\a.xlsx");
+ workbook.write(fos);
+ fos.close();
+
+ }
+}
