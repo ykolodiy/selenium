@@ -116,7 +116,7 @@ public class psoasisPROMO {
 			    Thread.sleep(3000);
 			    
 			    // apply prome
-			    if ( driver.findElements(By.linkText("Remove Promo")).size() > 0){
+			    if ( !(driver.findElements(By.linkText("Remove Promo")).size() > 0)){
 			   
 			    driver.findElement(By.id("set_promotion_code")).sendKeys("PROMOCODEHERE");
 			    
