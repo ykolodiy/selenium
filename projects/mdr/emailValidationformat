@@ -1,0 +1,65 @@
+package mdr;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
+public class MDREmailValidation {
+
+	public static void main(String[] args) {
+		
+		
+		try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//email.txt"))) {
+		     int i=1;
+				String line;
+				while ((line = br.readLine()) != null) {
+				
+					if (isValidEmailAddress(line) == false){
+					//System.out.println(i+" "+line+" "+isValidEmailAddress(line));
+					
+					System.out.println(line);
+					
+					}
+					
+					
+					i++;
+				}
+
+			
+			} 
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+		
+		
+		
+		
+		
+		
+
+	}
+
+	
+	
+	
+	
+	
+	public static boolean isValidEmailAddress(String email) {
+		   boolean result = true;
+		   try {
+		      InternetAddress emailAddr = new InternetAddress(email);
+		      emailAddr.validate();
+		   } catch (AddressException ex) {
+		      result = false;
+		   }
+		   return result;
+		}
+	
+	
+	
+	
+	
+}
