@@ -1,0 +1,73 @@
+package scripts;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Recurse {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "/Users/vkoloyu/jars/chromedriver");
+		WebDriver driver = new ChromeDriver();
+		Recurse r = new Recurse ();
+		List<String> b = new ArrayList<String>();
+		List<String> c = new ArrayList<String>();
+		List<String> d = new ArrayList<String>();
+		
+		try {
+		b = r.getfolders(driver, "https://chicago.craigslist.org");
+
+		
+		if (!b.isEmpty()) {
+		for (String j:b) {
+		System.out.println(j);
+		c.addAll(r.getfolders(driver, j));
+		}
+		}
+		if (!c.isEmpty()) {
+		for (String g:c) {
+			System.out.println(g);
+			d.addAll(r.getfolders(driver, g));
+		}
+		}
+		if (!d.isEmpty()) {
+			for (String h:d) {
+				System.out.println(h);
+				//d.addAll(r.getfolders(driver, g));
+			}
+			}
+		
+		}
+		catch (Exception e) {System.out.println("f");
+		
+		}
+		driver.close();
+	}
+	
+	public List<String> getfolders (WebDriver driver, String url){
+		driver.get(url);
+		List<String> a = new ArrayList<String>();
+		
+		List<WebElement> links=driver.findElements(By.tagName("a"));
+		
+		
+		for(int i=0;i<links.size();i++)
+		{
+			
+			WebElement ele= links.get(i);
+			
+			String u=ele.getAttribute("href");
+		
+			if (u != null & u.contains("chicago")) {
+				a.add(u);
+			}
+			
+			
+		}
+				return a;
+	}
+}
