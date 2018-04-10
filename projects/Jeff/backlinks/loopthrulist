@@ -1,0 +1,48 @@
+package Backlinks;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+public class Loopthruall {
+
+	public static void main(String[] args) throws Exception, IOException {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		
+		//get rid of warning messages
+		Logger logger = Logger.getLogger ("");
+		logger.setLevel (Level.OFF);
+		
+		
+		WebDriver driver;
+		// driver= new ChromeDriver();
+		driver = new HtmlUnitDriver();
+	      int h = 0;
+		try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\Backlinks\\contains.txt"))) {
+		     
+			String line;
+			
+			while ((line = br.readLine()) != null) {
+				driver.get(line);
+				String yourtext= driver.findElement(By.tagName("body")).getText() ;
+				
+				if (yourtext.contains("sex") || yourtext.contains("porn") ){
+					System.out.println(line);
+				}
+				else{System.out.print(".");}
+				
+				if (h % 100 == 0) {
+				     System.out.println(h);
+				}
+		h=h+1;
+			}
+			}
+	driver.close();	
+	System.out.println("done");
+	}}
