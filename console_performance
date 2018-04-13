@@ -1,0 +1,29 @@
+package Jeff302redirects;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class getNetworktab {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+	    ChromeOptions options = new ChromeOptions();
+	    // if you like to specify another profile
+	 //   options.addArguments("user-data-dir=/root/Downloads/aaa"); 
+	    options.addArguments("start-maximized");
+	    DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+	    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+	    WebDriver driver = new ChromeDriver(capabilities);
+	    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS1t3t");
+	    String scriptToExecute = "var performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {}; var network = performance.getEntries() || {}; return network;";
+	    String netData = ((JavascriptExecutor)driver).executeScript(scriptToExecute).toString();
+
+	    
+	    System.out.println(netData);
+	    driver.close();
+	}
+
+}
