@@ -1,0 +1,64 @@
+package Jeff302redirects;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class getresponsecode {
+
+	public static void main(String[] args) throws Exception {
+
+		
+		
+		try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//144.txt"))) {
+	    
+			String line;
+			while ((line = br.readLine()) != null) {
+			int u = getCode(line);
+			
+			if (u == 302){
+				
+				System.out.println(line+">"+u);
+				
+			}
+			
+			
+			
+			}
+
+			
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	public static int getCode (String urlZ) throws Exception{
+		
+		URL url = new URL(urlZ);
+		HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+		//dont follo redirections
+		connection.setInstanceFollowRedirects(false);
+		connection.setRequestMethod("GET");
+		connection.connect();
+
+			int code = connection.getResponseCode();
+		return code;
+		
+		
+	}
+	
+	
+
+}
