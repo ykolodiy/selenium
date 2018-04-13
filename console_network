@@ -1,0 +1,30 @@
+package Jeff302redirects;
+
+import java.util.logging.Level;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class getNetworkTab2 {
+
+	public static void main(String[] args) {
+		  DesiredCapabilities d = DesiredCapabilities.chrome();
+		    LoggingPreferences logPrefs = new LoggingPreferences();
+		    logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+		    d.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+		    WebDriver driver = new ChromeDriver(d);
+		    driver.get("https://www.pearsonschool.com/index.cfm?locator=PS1t3t");
+		    LogEntries les = driver.manage().logs().get(LogType.PERFORMANCE);
+		    for (LogEntry le : les) {
+		        System.out.println(le.getMessage());
+		    }
+
+	}
+
+}
