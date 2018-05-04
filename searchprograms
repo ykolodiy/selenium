@@ -23,17 +23,17 @@ public class BendAidFixTXT {
 	  public void afterMethod() {
 		  driver.close();}
 
-	@Test(dataProvider="multi-param")
-	public void mytest (String a) throws Exception {
+	@Test
+	public void mytest () throws Exception {
 
-			driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2vW2");
+			
 	
 			
-			try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//144.txt"))) {
+			try (BufferedReader br = new BufferedReader(new FileReader("C://tmp//ss.txt"))) {
 			   
 					String line;
 					while ((line = br.readLine()) != null) {
-			
+			            driver.get("https://www.pearsonschool.com/index.cfm?locator=PS2vW2");
 						driver.findElement(By.id("prog_input")).sendKeys(line);
 						
 						driver.findElement(By.id("prog_submit")).click();
@@ -45,7 +45,7 @@ public class BendAidFixTXT {
 						int Pages = Integer.parseInt(driver.findElement(By.xpath("//*[@id='site-content']/div/div/ul/li[5]/a/span")).getText().replaceAll("[^0-9]", ""));
 						
 					
-						System.out.println(a);	
+						System.out.println(line);	
 						System.out.println("Programs:" +Programs);
 						System.out.println("Products:" +Products);
 						System.out.println("ServicesOffering:" +ServicesOffering);
