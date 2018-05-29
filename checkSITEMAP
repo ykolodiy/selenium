@@ -1,0 +1,92 @@
+// finds if sitemap has broken links
+
+
+package brokenlink;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.io.File;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+
+public class BrokenSITEMAP {
+	private static int ok=0;
+	private static int z=0;
+public static void main (String[] args)
+
+	{
+	List<String> u = new ArrayList<>();
+	
+		 try {
+			 String url = "https://www.pearsonschool.com/sitemap.xml";
+      
+	         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	         DocumentBuilder db = dbf.newDocumentBuilder();
+	         Document doc = db.parse(new URL(url).openStream());
+	         doc.getDocumentElement().normalize();
+	     
+	         NodeList nList = doc.getElementsByTagName("url");
+	System.out.println(nList.getLength()); 
+   
+	         for (int temp = 0; temp < nList.getLength(); temp++) {
+	            Node nNode = nList.item(temp);
+	           	            
+	            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+	               Element eElement = (Element) nNode;
+	               System.out.println(eElement.getElementsByTagName("loc").item(0).getTextContent());
+	           u.add(eElement.getElementsByTagName("loc").item(0).getTextContent());
+	            }
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+		 
+		 
+			for(int i=0;i<u.size();i++)
+			{
+		
+				verifyLinkActive(u.get(i));
+				
+			}
+
+	   }
+
+public static void verifyLinkActive(String linkUrl)
+{
+    try 
+    {
+       URL url = new URL(linkUrl);
+       
+       HttpURLConnection httpURLConnect=(HttpURLConnection)url.openConnection();
+       
+       httpURLConnect.setConnectTimeout(3000);
+       httpURLConnect.setReadTimeout(10000);
+       httpURLConnect.connect();
+       
+       
+      
+       
+       if(httpURLConnect.getResponseCode() != 200)
+       {
+           System.out.println(linkUrl+" - "+httpURLConnect.getResponseMessage());
+           
+         
+        }
+       else {System.out.print("."); }
+
+    } catch (Exception e) {
+       
+    }
+} 
+
+}
