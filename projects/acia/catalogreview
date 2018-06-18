@@ -1,25 +1,28 @@
 package CatalogReviewAcia;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class CompleteScript {
+public class mainmethod {
 
-	public static void main(String[] args) {
-		try{  
+	public void runme (String isbn, String pmdbname ){
+		
+		
+	try{  
 			
 			//create file
-			String filen = "suka2";
-			File fileName = new File("C:\\tmp\\p\\"+filen+".xlsx");
+			String filen = pmdbname.replaceAll("[\\\\/:*?\"<>|]", "");
+			File fileName = new File("C:\\tmp\\p\\SecLiteracy\\"+filen+".xlsx");
 			
 			
 			
@@ -34,60 +37,9 @@ public class CompleteScript {
 			Statement stmt=con.createStatement();  
 			
 			//step4 execute query  
-			ResultSet rs=stmt.executeQuery("SE_SEQ, PRODUCT_SEQ");  
+			ResultSet rs=stmt.executeQuery("SELECT * FRd = "+isbn+" ORDER BY PROGRAM_SEQ, PRODUCT_SEQ");  
 
-			/*
-			
-			ResultSetMetaData rsmt = rs.getMetaData();
-			 System.out.println(
-					 rsmt.getColumnName(2)+" " +
-					 rsmt.getColumnName(4)+" " +
-					 rsmt.getColumnName(6)+" " +
-					 rsmt.getColumnName(8)+" " +
-					 rsmt.getColumnName(9)+" " +
-					 rsmt.getColumnName(11)+" " +
-					 rsmt.getColumnName(13)+" " +
-					 rsmt.getColumnName(19)+" " +
-					 rsmt.getColumnName(20)+" " +
-					 rsmt.getColumnName(21)+" " +
-					 rsmt.getColumnName(22)+" " +
-					 rsmt.getColumnName(23)+" " +
-					 rsmt.getColumnName(24)+" " +
-					 rsmt.getColumnName(25)+" " +
-					 rsmt.getColumnName(26)+" " +
-					 rsmt.getColumnName(27)+" " +
-					 rsmt.getColumnName(28)+" " +
-					 rsmt.getColumnName(29)+" " +
-					 rsmt.getColumnName(30)+" " +
-					 rsmt.getColumnName(31)+" " +
-					 rsmt.getColumnName(32)+" " +
-					 rsmt.getColumnName(33)+" " +
-					 rsmt.getColumnName(34)+" " +
-					 rsmt.getColumnName(35)+" " +
-					 rsmt.getColumnName(36)+" " +
-					 rsmt.getColumnName(37)+" " +
-					 rsmt.getColumnName(38)+" " +
-					 rsmt.getColumnName(39)+" " +
-					 rsmt.getColumnName(40)+" " +
-					 rsmt.getColumnName(41)+" " +
-					 rsmt.getColumnName(42)+" " +
-					 rsmt.getColumnName(43)+" " +
-					 rsmt.getColumnName(44)+" " +
-					 rsmt.getColumnName(45)+" " +
-					 rsmt.getColumnName(46)+" " +
-					 rsmt.getColumnName(47)+" " +
-					 rsmt.getColumnName(48)+" " +
-					 rsmt.getColumnName(49)+" " +
-					 rsmt.getColumnName(50)+" " +
-					 rsmt.getColumnName(51)+" " +
-					 rsmt.getColumnName(52)+" " +
-					 rsmt.getColumnName(53)+" " +
-					 rsmt.getColumnName(54)+" " +
-					 rsmt.getColumnName(55)+" " +
-					 rsmt.getColumnName(56)+" " +
-					 rsmt.getColumnName(57));
-			
-*/
+
 			
 			//write to file
 		    try {
@@ -95,6 +47,7 @@ public class CompleteScript {
 		        XSSFWorkbook  workbook = new XSSFWorkbook();            
 
 		        XSSFSheet sheet = workbook.createSheet("Export Worksheet");  
+		      
 		        
 		        
 
@@ -102,15 +55,15 @@ public class CompleteScript {
 		        ResultSetMetaData rsmt = rs.getMetaData();
 		        
 		        Row row0 = sheet.createRow(0);
-		        row0.createCell(0).setCellValue(rsmt.getColumnName(2));
-		        row0.createCell(1).setCellValue(rsmt.getColumnName(4));
-		        row0.createCell(2).setCellValue(rsmt.getColumnName(6));
-		        row0.createCell(3).setCellValue(rsmt.getColumnName(8));
+		        row0.createCell(0).setCellValue("Program Name");
+		        row0.createCell(1).setCellValue("Child Program Name (if applicable)");
+		        row0.createCell(2).setCellValue("Grandchild Program Name (if applicable)");
+		        row0.createCell(3).setCellValue("ISBN10");
 		        row0.createCell(4).setCellValue(rsmt.getColumnName(9));
-		        row0.createCell(5).setCellValue(rsmt.getColumnName(11));
-		        row0.createCell(6).setCellValue(rsmt.getColumnName(13));
-		        row0.createCell(7).setCellValue(rsmt.getColumnName(19));
-		        row0.createCell(8).setCellValue(rsmt.getColumnName(20));
+		        row0.createCell(5).setCellValue("Product Title");
+		        row0.createCell(6).setCellValue("External (Y/N)");
+		        row0.createCell(7).setCellValue("PO or CC needed to purchase? [Restricted]");
+		        row0.createCell(8).setCellValue("Product Description");
 		        row0.createCell(9).setCellValue(rsmt.getColumnName(21));
 		        row0.createCell(10).setCellValue(rsmt.getColumnName(22));
 		        row0.createCell(11).setCellValue(rsmt.getColumnName(23));
@@ -126,8 +79,8 @@ public class CompleteScript {
 		        row0.createCell(21).setCellValue(rsmt.getColumnName(33));
 		        row0.createCell(22).setCellValue(rsmt.getColumnName(34));
 		        row0.createCell(23).setCellValue(rsmt.getColumnName(35));
-		        row0.createCell(24).setCellValue(rsmt.getColumnName(36));
-		        row0.createCell(25).setCellValue(rsmt.getColumnName(37));
+		        row0.createCell(24).setCellValue("Online Learning Exchange (OLE)");
+		        row0.createCell(25).setCellValue("Pearson System of Courses (PSOC)");
 		        row0.createCell(26).setCellValue(rsmt.getColumnName(38));
 		        row0.createCell(27).setCellValue(rsmt.getColumnName(39));
 		        row0.createCell(28).setCellValue(rsmt.getColumnName(40));
@@ -187,7 +140,7 @@ public class CompleteScript {
 		        		
 		        		 
 		        		 row1.createCell(a).setCellValue(v[a]);
-		        		 System.out.println(v[a].toString());
+		        		// System.out.println(v[a].toString());
 		        		  
 		        		}
 		        	 
@@ -218,6 +171,13 @@ public class CompleteScript {
 			con.close();  
 			  
 			}catch(Exception e){ System.out.println(e);}  
-			  
-			}  
+		
+		
+		
+		
+		
+		
+		
 	}
+	
+}
