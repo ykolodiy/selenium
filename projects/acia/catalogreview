@@ -1,0 +1,223 @@
+package CatalogReviewAcia;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class CompleteScript {
+
+	public static void main(String[] args) {
+		try{  
+			
+			//create file
+			String filen = "suka2";
+			File fileName = new File("C:\\tmp\\p\\"+filen+".xlsx");
+			
+			
+			
+			//step1 load the driver class  
+			Class.forName("oracle.jdbc.driver.OracleDriver");  
+			  
+			//step2 create  the connection object  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:oracle:th);  
+			  
+			//step3 create the statement object  
+			Statement stmt=con.createStatement();  
+			
+			//step4 execute query  
+			ResultSet rs=stmt.executeQuery("SE_SEQ, PRODUCT_SEQ");  
+
+			/*
+			
+			ResultSetMetaData rsmt = rs.getMetaData();
+			 System.out.println(
+					 rsmt.getColumnName(2)+" " +
+					 rsmt.getColumnName(4)+" " +
+					 rsmt.getColumnName(6)+" " +
+					 rsmt.getColumnName(8)+" " +
+					 rsmt.getColumnName(9)+" " +
+					 rsmt.getColumnName(11)+" " +
+					 rsmt.getColumnName(13)+" " +
+					 rsmt.getColumnName(19)+" " +
+					 rsmt.getColumnName(20)+" " +
+					 rsmt.getColumnName(21)+" " +
+					 rsmt.getColumnName(22)+" " +
+					 rsmt.getColumnName(23)+" " +
+					 rsmt.getColumnName(24)+" " +
+					 rsmt.getColumnName(25)+" " +
+					 rsmt.getColumnName(26)+" " +
+					 rsmt.getColumnName(27)+" " +
+					 rsmt.getColumnName(28)+" " +
+					 rsmt.getColumnName(29)+" " +
+					 rsmt.getColumnName(30)+" " +
+					 rsmt.getColumnName(31)+" " +
+					 rsmt.getColumnName(32)+" " +
+					 rsmt.getColumnName(33)+" " +
+					 rsmt.getColumnName(34)+" " +
+					 rsmt.getColumnName(35)+" " +
+					 rsmt.getColumnName(36)+" " +
+					 rsmt.getColumnName(37)+" " +
+					 rsmt.getColumnName(38)+" " +
+					 rsmt.getColumnName(39)+" " +
+					 rsmt.getColumnName(40)+" " +
+					 rsmt.getColumnName(41)+" " +
+					 rsmt.getColumnName(42)+" " +
+					 rsmt.getColumnName(43)+" " +
+					 rsmt.getColumnName(44)+" " +
+					 rsmt.getColumnName(45)+" " +
+					 rsmt.getColumnName(46)+" " +
+					 rsmt.getColumnName(47)+" " +
+					 rsmt.getColumnName(48)+" " +
+					 rsmt.getColumnName(49)+" " +
+					 rsmt.getColumnName(50)+" " +
+					 rsmt.getColumnName(51)+" " +
+					 rsmt.getColumnName(52)+" " +
+					 rsmt.getColumnName(53)+" " +
+					 rsmt.getColumnName(54)+" " +
+					 rsmt.getColumnName(55)+" " +
+					 rsmt.getColumnName(56)+" " +
+					 rsmt.getColumnName(57));
+			
+*/
+			
+			//write to file
+		    try {
+		        FileOutputStream fos = new FileOutputStream(fileName);
+		        XSSFWorkbook  workbook = new XSSFWorkbook();            
+
+		        XSSFSheet sheet = workbook.createSheet("Export Worksheet");  
+		        
+		        
+
+// headers of each columns		        
+		        ResultSetMetaData rsmt = rs.getMetaData();
+		        
+		        Row row0 = sheet.createRow(0);
+		        row0.createCell(0).setCellValue(rsmt.getColumnName(2));
+		        row0.createCell(1).setCellValue(rsmt.getColumnName(4));
+		        row0.createCell(2).setCellValue(rsmt.getColumnName(6));
+		        row0.createCell(3).setCellValue(rsmt.getColumnName(8));
+		        row0.createCell(4).setCellValue(rsmt.getColumnName(9));
+		        row0.createCell(5).setCellValue(rsmt.getColumnName(11));
+		        row0.createCell(6).setCellValue(rsmt.getColumnName(13));
+		        row0.createCell(7).setCellValue(rsmt.getColumnName(19));
+		        row0.createCell(8).setCellValue(rsmt.getColumnName(20));
+		        row0.createCell(9).setCellValue(rsmt.getColumnName(21));
+		        row0.createCell(10).setCellValue(rsmt.getColumnName(22));
+		        row0.createCell(11).setCellValue(rsmt.getColumnName(23));
+		        row0.createCell(12).setCellValue(rsmt.getColumnName(24));
+		        row0.createCell(13).setCellValue(rsmt.getColumnName(25));
+		        row0.createCell(14).setCellValue(rsmt.getColumnName(26));
+		        row0.createCell(15).setCellValue(rsmt.getColumnName(27));
+		        row0.createCell(16).setCellValue(rsmt.getColumnName(28));
+		        row0.createCell(17).setCellValue(rsmt.getColumnName(29));
+		        row0.createCell(18).setCellValue(rsmt.getColumnName(30));
+		        row0.createCell(19).setCellValue(rsmt.getColumnName(31));
+		        row0.createCell(20).setCellValue(rsmt.getColumnName(32));
+		        row0.createCell(21).setCellValue(rsmt.getColumnName(33));
+		        row0.createCell(22).setCellValue(rsmt.getColumnName(34));
+		        row0.createCell(23).setCellValue(rsmt.getColumnName(35));
+		        row0.createCell(24).setCellValue(rsmt.getColumnName(36));
+		        row0.createCell(25).setCellValue(rsmt.getColumnName(37));
+		        row0.createCell(26).setCellValue(rsmt.getColumnName(38));
+		        row0.createCell(27).setCellValue(rsmt.getColumnName(39));
+		        row0.createCell(28).setCellValue(rsmt.getColumnName(40));
+		        row0.createCell(29).setCellValue(rsmt.getColumnName(41));
+		        row0.createCell(30).setCellValue(rsmt.getColumnName(42));
+		        row0.createCell(31).setCellValue(rsmt.getColumnName(43));
+		        row0.createCell(32).setCellValue(rsmt.getColumnName(44));
+		        row0.createCell(33).setCellValue(rsmt.getColumnName(45));
+		        row0.createCell(34).setCellValue(rsmt.getColumnName(46));
+		        row0.createCell(35).setCellValue(rsmt.getColumnName(47));
+		        row0.createCell(36).setCellValue(rsmt.getColumnName(48));
+		        row0.createCell(37).setCellValue(rsmt.getColumnName(49));
+		        row0.createCell(38).setCellValue(rsmt.getColumnName(50));
+		        row0.createCell(39).setCellValue(rsmt.getColumnName(51));
+		        row0.createCell(40).setCellValue(rsmt.getColumnName(52));
+		        row0.createCell(41).setCellValue(rsmt.getColumnName(53));
+		        row0.createCell(42).setCellValue(rsmt.getColumnName(54));
+		        row0.createCell(43).setCellValue(rsmt.getColumnName(55));
+		        row0.createCell(44).setCellValue(rsmt.getColumnName(56));
+		        row0.createCell(45).setCellValue(rsmt.getColumnName(57));
+		        
+		        
+		        
+		        
+		        
+		        
+		//populate columns
+		        
+		        int x=1;
+		      
+		       // cells from 0 to 45
+		        String [] v = new String[46];
+		        while(rs.next())  
+				{
+		        	Row row1 = sheet.createRow(x); 
+		        	  int z=0;
+		        	
+		        	 
+		        	 for(int y=1;y<=59;y++){
+		        		 if (y == 1 || y==3 || y==5 || y==7 || y==10 || y==12 || y==14 || y==15 || y==16 || y==17 || y==18 || y==58 || y==59) {
+		     		        continue;
+		     		    }
+		        		 
+		        		 if (rs.getString(y) != null){v[z]= rs.getString(y);} 
+		        		 else {v[z] = "";}
+		        		
+		        		 
+		        		z=z+1;
+		        	 }
+		        	 // LETS loop thru []v
+		        	 for(int a=0;a<=45;a++){
+		        	 if (v[6].toString().contains("X")){v[6] = "Y";} 
+		        	 else if (v[6].toString().trim().isEmpty()) {v[6] = "N";}
+		        	 
+		        	if (v[7].toString().contains("0")){v[7] = "N";}
+		        	else if (v[7].toString().trim().contains("1")) {v[7] = "Y";}
+		        		
+		        		 
+		        		 row1.createCell(a).setCellValue(v[a]);
+		        		 System.out.println(v[a].toString());
+		        		  
+		        		}
+		        	 
+		        	 //flush the string
+		        	 v = new String[46];
+		        	x=x+1;
+				}
+		        
+		        
+		        
+		        
+		        
+		        //write it to file
+		        workbook.write(fos);
+		        //close free memory
+		        fos.flush();
+		        fos.close();
+		        workbook.close();
+		        System.out.println("created at: " +fileName.getAbsolutePath());
+		    } catch (FileNotFoundException e) {
+		        e.printStackTrace();
+		    }
+			
+			
+			
+			//step5 close the SQL connection object  
+			rs.close();
+			con.close();  
+			  
+			}catch(Exception e){ System.out.println(e);}  
+			  
+			}  
+	}
