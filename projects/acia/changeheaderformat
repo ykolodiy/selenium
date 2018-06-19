@@ -110,16 +110,39 @@ public class changecolumnformat {
 		      
 		        // create cell style for yellow cells
 		    XSSFCellStyle style1 = wb.createCellStyle();
-
+		    XSSFCellStyle style2 = wb.createCellStyle();
+		    XSSFCellStyle style3 = wb.createCellStyle();
 		    // Orange "foreground", foreground being the fill foreground not the font color.
 		    //style1.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
-		    XSSFColor gold = new XSSFColor(new java.awt.Color(236, 255, 179));
+		    // how to get rgb from excel https://excelribbon.tips.net/T010180_Determining_the_RGB_Value_of_a_Color.html
+		    XSSFColor gold = new XSSFColor(new java.awt.Color(255, 242, 204));
+		    XSSFColor blue = new XSSFColor(new java.awt.Color(159, 197, 232));
+		    XSSFColor lightblue = new XSSFColor(new java.awt.Color(207, 226, 243));
+		    
 		    style1.setFillForegroundColor(gold);
 		    style1.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		    style1.setVerticalAlignment(VerticalAlignment.CENTER);
 		    style1.setAlignment(HorizontalAlignment.CENTER);
 		    style1.setFont(font);
 		    style1.setWrapText(true);
+		    
+		    style2.setFillForegroundColor(blue);
+		    style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		    style2.setVerticalAlignment(VerticalAlignment.CENTER);
+		    style2.setAlignment(HorizontalAlignment.CENTER);
+		    style2.setFont(font);
+		    style2.setWrapText(true);
+		    
+		    
+		    style3.setFillForegroundColor(lightblue);
+		    style3.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		    style3.setVerticalAlignment(VerticalAlignment.CENTER);
+		    style3.setAlignment(HorizontalAlignment.CENTER);
+		    style3.setFont(font);
+		    style3.setWrapText(true);
+		    
+		    
+		    
 		    
 		    
 		    Cell cell = row.createCell(0);
@@ -128,7 +151,11 @@ public class changecolumnformat {
 		    
 		    cell = row.createCell(1);
 		    cell.setCellValue("Child Program Name (if applicable)");
-		    cell.setCellStyle(style1);
+		    cell.setCellStyle(style2);
+		    
+		    cell = row.createCell(2);
+		    cell.setCellValue("Grandchild Program Name (if applicable)");
+		    cell.setCellStyle(style3);
 
 		    
 		    
