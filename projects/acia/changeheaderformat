@@ -1,3 +1,5 @@
+package CatalogReviewAcia;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,58 +11,138 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class aciacatalogcellformat {
+public class changecolumnformat {
 
 	public static void main(String[] args) throws Exception {
-			
+		
 		XSSFWorkbook wb = new XSSFWorkbook();
 		XSSFSheet sheet = wb.createSheet("newsheet");
 
-		sheet.setColumnWidth(3, 6000);
+		//SET COLUMNS WIDTHS
+		//column A width
+		sheet.setColumnWidth(0, 9000);
+		//column B width
+		sheet.setColumnWidth(1, 9000);
+		//...
+		sheet.setColumnWidth(2, 5000);
+		sheet.setColumnWidth(3, 7000);
+		sheet.setColumnWidth(4, 7000);
+		sheet.setColumnWidth(5, 20000);
+		sheet.setColumnWidth(6, 5000);
+		sheet.setColumnWidth(7, 5000);
+		sheet.setColumnWidth(8, 20000);
+		sheet.setColumnWidth(9, 5000);
+		sheet.setColumnWidth(10, 5000);
+		sheet.setColumnWidth(11, 5000);
+		sheet.setColumnWidth(12, 5000);
+		sheet.setColumnWidth(13, 5000);
+		sheet.setColumnWidth(14, 5000);
+		sheet.setColumnWidth(15, 5000);
+		sheet.setColumnWidth(16, 5000);
+		sheet.setColumnWidth(17, 5000);
+		sheet.setColumnWidth(18, 5000);
+		sheet.setColumnWidth(19, 5000);
+		sheet.setColumnWidth(20, 5000);
+		sheet.setColumnWidth(21, 5000);
+		sheet.setColumnWidth(22, 5000);
+		sheet.setColumnWidth(23, 5000);
+		sheet.setColumnWidth(24, 5000);
+		sheet.setColumnWidth(25, 5000);
+		sheet.setColumnWidth(26, 5000);
+		sheet.setColumnWidth(27, 5000);
+		sheet.setColumnWidth(28, 5000);
+		sheet.setColumnWidth(29, 5000);
+		sheet.setColumnWidth(30, 5000);
+		sheet.setColumnWidth(31, 5000);
+		sheet.setColumnWidth(32, 5000);
+		sheet.setColumnWidth(33, 5000);
+		sheet.setColumnWidth(34, 5000);
+		sheet.setColumnWidth(35, 5000);
+		sheet.setColumnWidth(36, 5000);
+		sheet.setColumnWidth(37, 5000);
+		sheet.setColumnWidth(38, 5000);
+		sheet.setColumnWidth(39, 5000);
+		sheet.setColumnWidth(40, 5000);
+		sheet.setColumnWidth(41, 5000);
+		sheet.setColumnWidth(42, 5000);
+		sheet.setColumnWidth(43, 5000);
+		sheet.setColumnWidth(44, 5000);
+		sheet.setColumnWidth(45, 5000);
+		
+		
+		
+		
+		
+		
 		
 		    // Create a row and put some cells in it. Rows are 0 based.
-		XSSFRow row = sheet.createRow(1);
+		XSSFRow row = sheet.createRow(0);
 
-		    // Aqua background
-		    CellStyle style = wb.createCellStyle();
+		//set HEIGHT of the row
+		row.setHeightInPoints(55);
+		
+		
+		
+		
+		
+		
+		
 		 
 		    //font
-		  //Create a new font and alter it.
+		  //Create one new font and set it for all styles.
 		      XSSFFont font = wb.createFont();
 		   		      font.setFontName("ARIAL");
+		   		      font.setBold(true);
 		      
 		      
-		    
+		        // create cell style for yellow cells
+		    XSSFCellStyle style1 = wb.createCellStyle();
 
 		    // Orange "foreground", foreground being the fill foreground not the font color.
-		    style = wb.createCellStyle();
-		    style.setFillForegroundColor(IndexedColors.RED.getIndex());
-		    style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-		    style.setFont(font);
+		    //style1.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+		    XSSFColor gold = new XSSFColor(new java.awt.Color(236, 255, 179));
+		    style1.setFillForegroundColor(gold);
+		    style1.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		    style1.setVerticalAlignment(VerticalAlignment.CENTER);
+		    style1.setAlignment(HorizontalAlignment.CENTER);
+		    style1.setFont(font);
+		    style1.setWrapText(true);
 		    
 		    
-		    Cell cell = row.createCell(2);
-		    cell.setCellValue("X");
-		    cell.setCellStyle(style);
+		    Cell cell = row.createCell(0);
+		    cell.setCellValue("Program name");
+		    cell.setCellStyle(style1);
+		    
+		    cell = row.createCell(1);
+		    cell.setCellValue("Child Program Name (if applicable)");
+		    cell.setCellStyle(style1);
 
+		    
+		    
+		    
+		    
 		    // Write the output to a file
-		    try (OutputStream fileOut = new FileOutputStream("E:\\YK\\workbook.xlsx")) {
+		    try (OutputStream fileOut = new FileOutputStream("C:\\tmp\\p\\workbook.xlsx")) {
 		        wb.write(fileOut);
 		    }
 
 		    wb.close();
 			
 			
-			
+			System.out.println("DONE");
 			
 			
 		}
