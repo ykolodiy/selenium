@@ -9,11 +9,18 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class mainmethod {
+public class SECOND_mainmethod {
 
 	public void runme (String isbn, String pmdbname ){
 		
@@ -22,7 +29,7 @@ public class mainmethod {
 			
 			//create file
 			String filen = pmdbname.replaceAll("[\\\\/:*?\"<>|]", "");
-			File fileName = new File("C:\\tmp\\p\\SecLiteracy\\"+filen+".xlsx");
+			File fileName = new File("C:\\tmp\\p\\test\\"+filen+".xlsx");
 			
 			
 			
@@ -31,13 +38,13 @@ public class mainmethod {
 			  
 			//step2 create  the connection object  
 			Connection con=DriverManager.getConnection(  
-			"jdbc:oracle:th);  
+			"jdbc:oracle:thin:@  
 			  
 			//step3 create the statement object  
 			Statement stmt=con.createStatement();  
 			
 			//step4 execute query  
-			ResultSet rs=stmt.executeQuery("SELECT * FRd = "+isbn+" ORDER BY PROGRAM_SEQ, PRODUCT_SEQ");  
+			ResultSet rs=stmt.executeQuery("SELECT * FROM v_ER BY PROGRAM_SEQ, PRODUCT_SEQ");  
 
 
 			
@@ -49,12 +56,139 @@ public class mainmethod {
 		        XSSFSheet sheet = workbook.createSheet("Export Worksheet");  
 		      
 		        
+		      //SET COLUMNS WIDTHS
+				//column A width
+				sheet.setColumnWidth(0, 9000);
+				//column B width
+				sheet.setColumnWidth(1, 9000);
+				//...
+				sheet.setColumnWidth(2, 5000);
+				sheet.setColumnWidth(3, 7000);
+				sheet.setColumnWidth(4, 7000);
+				sheet.setColumnWidth(5, 20000);
+				sheet.setColumnWidth(6, 5000);
+				sheet.setColumnWidth(7, 5000);
+				sheet.setColumnWidth(8, 20000);
+				sheet.setColumnWidth(9, 5000);
+				sheet.setColumnWidth(10, 5000);
+				sheet.setColumnWidth(11, 5000);
+				sheet.setColumnWidth(12, 5000);
+				sheet.setColumnWidth(13, 5000);
+				sheet.setColumnWidth(14, 5000);
+				sheet.setColumnWidth(15, 5000);
+				sheet.setColumnWidth(16, 5000);
+				sheet.setColumnWidth(17, 5000);
+				sheet.setColumnWidth(18, 5000);
+				sheet.setColumnWidth(19, 5000);
+				sheet.setColumnWidth(20, 5000);
+				sheet.setColumnWidth(21, 5000);
+				sheet.setColumnWidth(22, 5000);
+				sheet.setColumnWidth(23, 5000);
+				sheet.setColumnWidth(24, 5000);
+				sheet.setColumnWidth(25, 5000);
+				sheet.setColumnWidth(26, 5000);
+				sheet.setColumnWidth(27, 5000);
+				sheet.setColumnWidth(28, 5000);
+				sheet.setColumnWidth(29, 5000);
+				sheet.setColumnWidth(30, 5000);
+				sheet.setColumnWidth(31, 5000);
+				sheet.setColumnWidth(32, 5000);
+				sheet.setColumnWidth(33, 5000);
+				sheet.setColumnWidth(34, 5000);
+				sheet.setColumnWidth(35, 5000);
+				sheet.setColumnWidth(36, 5000);
+				sheet.setColumnWidth(37, 5000);
+				sheet.setColumnWidth(38, 5000);
+				sheet.setColumnWidth(39, 5000);
+				sheet.setColumnWidth(40, 5000);
+				sheet.setColumnWidth(41, 5000);
+				sheet.setColumnWidth(42, 5000);
+				sheet.setColumnWidth(43, 5000);
+				sheet.setColumnWidth(44, 5000);
+				sheet.setColumnWidth(45, 5000);
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
 		        
 
 // headers of each columns		        
 		        ResultSetMetaData rsmt = rs.getMetaData();
 		        
 		        Row row0 = sheet.createRow(0);
+		    	//set HEIGHT of the row
+				row0.setHeightInPoints(55);
+		        
+				 
+			    //font
+			  //Create one new font and set it for all styles.
+			      XSSFFont font = workbook.createFont();
+			   		      font.setFontName("ARIAL");
+			   		      font.setBold(true);
+				
+				
+			   		      
+			   		      
+			   		      
+					        // create cell style for yellow cells
+			  		    XSSFCellStyle style1 = workbook.createCellStyle();
+			  		    XSSFCellStyle style2 = workbook.createCellStyle();
+			  		    XSSFCellStyle style3 = workbook.createCellStyle();
+			  		    // Orange "foreground", foreground being the fill foreground not the font color.
+			  		    //style1.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+			  		    // how to get rgb from excel https://excelribbon.tips.net/T010180_Determining_the_RGB_Value_of_a_Color.html
+			  		    XSSFColor gold = new XSSFColor(new java.awt.Color(255, 242, 204));
+			  		    XSSFColor blue = new XSSFColor(new java.awt.Color(159, 197, 232));
+			  		    XSSFColor lightblue = new XSSFColor(new java.awt.Color(207, 226, 243));
+			  		    
+			  		    style1.setFillForegroundColor(gold);
+			  		    style1.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			  		    style1.setVerticalAlignment(VerticalAlignment.CENTER);
+			  		    style1.setAlignment(HorizontalAlignment.CENTER);
+			  		    style1.setFont(font);
+			  		    style1.setWrapText(true);
+			  		    
+			  		    style2.setFillForegroundColor(blue);
+			  		    style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			  		    style2.setVerticalAlignment(VerticalAlignment.CENTER);
+			  		    style2.setAlignment(HorizontalAlignment.CENTER);
+			  		    style2.setFont(font);
+			  		    style2.setWrapText(true);
+			  		    
+			  		    
+			  		    style3.setFillForegroundColor(lightblue);
+			  		    style3.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			  		    style3.setVerticalAlignment(VerticalAlignment.CENTER);
+			  		    style3.setAlignment(HorizontalAlignment.CENTER);
+			  		    style3.setFont(font);
+			  		    style3.setWrapText(true);
+			   		      
+			   		      
+			   		      
+			   		      
+			  		   // cell object
+					    Cell cell;	      
+			   		      
+					    cell = row0.createCell(0);
+					    cell.setCellValue("Program name");
+					    cell.setCellStyle(style1);
+				
+		      /*  
 		        row0.createCell(0).setCellValue("Program Name");
 		        row0.createCell(1).setCellValue("Child Program Name (if applicable)");
 		        row0.createCell(2).setCellValue("Grandchild Program Name (if applicable)");
@@ -102,7 +236,56 @@ public class mainmethod {
 		        row0.createCell(44).setCellValue(rsmt.getColumnName(56));
 		        row0.createCell(45).setCellValue(rsmt.getColumnName(57));
 		        
-		        
+		        */
+					    
+					    
+					    cell=row0.createCell(0);cell.setCellValue("Program Name");cell.setCellStyle(style1);
+					    cell=row0.createCell(1);cell.setCellValue("Child Program Name (if applicable)");cell.setCellStyle(style1);
+					    cell=row0.createCell(2);cell.setCellValue("Grandchild Program Name (if applicable)");cell.setCellStyle(style1);
+					    cell=row0.createCell(3);cell.setCellValue("ISBN10");cell.setCellStyle(style1);
+					    cell=row0.createCell(4);cell.setCellValue(rsmt.getColumnName(9));cell.setCellStyle(style1);
+					    cell=row0.createCell(5);cell.setCellValue("Product Title");cell.setCellStyle(style2);
+					    cell=row0.createCell(6);cell.setCellValue("External (Y/N)");cell.setCellStyle(style1);
+					    cell=row0.createCell(7);cell.setCellValue("PO or CC needed to purchase? [Restricted]");cell.setCellStyle(style1);
+					    cell=row0.createCell(8);cell.setCellValue("Product Description");cell.setCellStyle(style3);
+					    cell=row0.createCell(9);cell.setCellValue(rsmt.getColumnName(21));cell.setCellStyle(style2);
+					    cell=row0.createCell(10);cell.setCellValue(rsmt.getColumnName(22));cell.setCellStyle(style2);
+					    cell=row0.createCell(11);cell.setCellValue(rsmt.getColumnName(23));cell.setCellStyle(style2);
+					    cell=row0.createCell(12);cell.setCellValue(rsmt.getColumnName(24));cell.setCellStyle(style2);
+					    cell=row0.createCell(13);cell.setCellValue(rsmt.getColumnName(25));cell.setCellStyle(style2);
+					    cell=row0.createCell(14);cell.setCellValue(rsmt.getColumnName(26));cell.setCellStyle(style2);
+					    cell=row0.createCell(15);cell.setCellValue(rsmt.getColumnName(27));cell.setCellStyle(style2);
+					    cell=row0.createCell(16);cell.setCellValue(rsmt.getColumnName(28));cell.setCellStyle(style3);
+					    cell=row0.createCell(17);cell.setCellValue(rsmt.getColumnName(29));cell.setCellStyle(style3);
+					    cell=row0.createCell(18);cell.setCellValue(rsmt.getColumnName(30));cell.setCellStyle(style3);
+					    cell=row0.createCell(19);cell.setCellValue(rsmt.getColumnName(31));cell.setCellStyle(style3);
+					    cell=row0.createCell(20);cell.setCellValue(rsmt.getColumnName(32));cell.setCellStyle(style3);
+					    cell=row0.createCell(21);cell.setCellValue(rsmt.getColumnName(33));cell.setCellStyle(style3);
+					    cell=row0.createCell(22);cell.setCellValue(rsmt.getColumnName(34));cell.setCellStyle(style2);
+					    cell=row0.createCell(23);cell.setCellValue(rsmt.getColumnName(35));cell.setCellStyle(style2);
+					    cell=row0.createCell(24);cell.setCellValue("Online Learning Exchange (OLE)");cell.setCellStyle(style2);
+					    cell=row0.createCell(25);cell.setCellValue("Pearson System of Courses (PSOC)");cell.setCellStyle(style2);
+					    cell=row0.createCell(26);cell.setCellValue(rsmt.getColumnName(38));cell.setCellStyle(style2);
+					    cell=row0.createCell(27);cell.setCellValue(rsmt.getColumnName(39));cell.setCellStyle(style2);
+					    cell=row0.createCell(28);cell.setCellValue(rsmt.getColumnName(40));cell.setCellStyle(style2);
+					    cell=row0.createCell(29);cell.setCellValue(rsmt.getColumnName(41));cell.setCellStyle(style2);
+					    cell=row0.createCell(30);cell.setCellValue(rsmt.getColumnName(42));cell.setCellStyle(style2);
+					    cell=row0.createCell(31);cell.setCellValue(rsmt.getColumnName(43));cell.setCellStyle(style2);
+					    cell=row0.createCell(32);cell.setCellValue(rsmt.getColumnName(44));cell.setCellStyle(style2);
+					    cell=row0.createCell(33);cell.setCellValue(rsmt.getColumnName(45));cell.setCellStyle(style2);
+					    cell=row0.createCell(34);cell.setCellValue(rsmt.getColumnName(46));cell.setCellStyle(style3);
+					    cell=row0.createCell(35);cell.setCellValue(rsmt.getColumnName(47));cell.setCellStyle(style3);
+					    cell=row0.createCell(36);cell.setCellValue(rsmt.getColumnName(48));cell.setCellStyle(style3);
+					    cell=row0.createCell(37);cell.setCellValue(rsmt.getColumnName(49));cell.setCellStyle(style2);
+					    cell=row0.createCell(38);cell.setCellValue(rsmt.getColumnName(50));cell.setCellStyle(style2);
+					    cell=row0.createCell(39);cell.setCellValue(rsmt.getColumnName(51));cell.setCellStyle(style2);
+					    cell=row0.createCell(40);cell.setCellValue(rsmt.getColumnName(52));cell.setCellStyle(style2);
+					    cell=row0.createCell(41);cell.setCellValue(rsmt.getColumnName(53));cell.setCellStyle(style2);
+					    cell=row0.createCell(42);cell.setCellValue(rsmt.getColumnName(54));cell.setCellStyle(style2);
+					    cell=row0.createCell(43);cell.setCellValue(rsmt.getColumnName(55));cell.setCellStyle(style2);
+					    cell=row0.createCell(44);cell.setCellValue(rsmt.getColumnName(56));cell.setCellStyle(style2);
+					    cell=row0.createCell(45);cell.setCellValue(rsmt.getColumnName(57));cell.setCellStyle(style2);  
+					    
 		        
 		        
 		        
