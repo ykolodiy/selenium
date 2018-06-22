@@ -1,0 +1,142 @@
+package E2E_once_a_day;
+
+
+
+//it checks Contact > School, District, Non-Profit, Corrections or Juvenile Organization > 
+//Enter ZIP or City if it find your school and render information
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+public class Contact {
+
+
+	
+	  @Test(dataProvider="Sender")
+		public void mytest (String zip, String schoolsContact, String schoolsFORM) throws Exception {
+		  WebDriver driver;
+		  System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe"); driver  = new ChromeDriver();
+			
+		//SoftAssert ass = new SoftAssert();
+		 
+
+		//open home page
+		driver.get("http://www.pearsonschool.com/index.cfm?locator=PSZ13f");
+		
+		//click Contact your sales rep
+		driver.findElement(By.xpath("//a[@class='contactIcon']")).click();
+
+		//click School, District, Non-Profit, Corrections or Juvenile Organization
+		driver.findElement(By.id("rf_contactSalesRep")).click();
+	
+		WebDriverWait wait = new WebDriverWait(driver, 9);
+		WebElement contactrep = wait.until(ExpectedConditions.elementToBeClickable(By.id("rf_usRepFinder")));
+				contactrep.click();
+		
+		WebElement zipcode = wait.until(ExpectedConditions.elementToBeClickable(By.name("cityOrZip")));
+		
+		zipcode.sendKeys(zip);
+		// get list of all institutes
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("rf_usRepInstitutes")));
+		Select dropdown = new Select(driver.findElement(By.id("rf_usRepInstitutes")));
+		List<WebElement> i = dropdown.getOptions();
+		// real amount of schools - 2 elect Institution+I don't see my school
+		
+		System.out.println(zip +" Actual contact : " +  " "+ (i.size()-2) + " Expected: " +schoolsContact);
+		
+		
+
+		
+		
+		
+		
+		driver.get("https://www.pearsonschool.com/profile.cfm?pageref=register&csURL=%2F%2Fwww%2Epearsonschool%2Ecom%2Findex%2Ecfm&csURLVars=csu_locator%3DPS1zJo&group_id=1&app_id=7");
+		driver.findElement(By.id("city_or_zip")).sendKeys(zip);
+		 Thread.sleep(1500);
+		driver.findElement(By.linkText("search")).click();
+		
+		 Thread.sleep(1500);
+		
+		Select dropdown2 = new Select(driver.findElement(By.xpath(".//select[@size='5']")));
+		List<WebElement> i2 = dropdown2.getOptions();
+		/*
+		for (WebElement l2 : i2){
+			System.out.println(l2.getText());
+		}
+		*/
+		System.out.println(zip +" Actual form: " +  " "+(i2.size()-1) + " Expected "+schoolsFORM);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		driver.close();
+
+		
+	}
+	  
+	  
+	  /*
+	  
+	    @DataProvider(name="multi-param")
+	    public Object[][] dpMultiParam() {
+	        return new Object[][]{
+	                {"60622", 28},
+	                {"dallas", 530},
+	                {"90001", 24},
+	                {"chicago", 1159},
+	                {"60641", 20}
+	          
+				};
+	    }
+	    
+	    
+	    
+	    */
+	  
+	  
+	   @DataProvider
+	    public Object[][] Sender()
+	    {
+	        Object[][] data = new Object[5][3];
+	        data[0][0] = "60622";
+	        data[0][1] = "28";
+	        data[0][2] = "37";
+	        data[1][0] = "dallas";
+	        data[1][1] = "557";
+	        data[1][2] = "904";
+	        data[2][0] = "new york";
+	        data[2][1] = "753";
+	        data[2][2] = "1120";
+	        data[3][0] = "washington";
+	        data[3][1] = "558";
+	        data[3][2] = "864";
+	        data[4][0] = "60641";
+	        data[4][1] = "20";
+	        data[4][2] = "29";
+	        return data;
+	    }
+	  
+	  
+	  
+	  
+}
+
