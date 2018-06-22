@@ -1,0 +1,74 @@
+package office;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class getSchoolsfromRegistry {
+
+	public static void main(String[] args) throws Exception {
+		  WebDriver driver;
+		  System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe"); driver  = new ChromeDriver();
+			
+		  String zip = "dallas";
+
+		// from form
+		driver.get("https://www.pearsonschool.com/profile.cfm?pageref=register&csURL=%2F%2Fwww%2Epearsonschool%2Ecom%2Findex%2Ecfm&csURLVars=csu_locator%3DPS1zJo&group_id=1&app_id=7");
+		driver.findElement(By.id("city_or_zip")).sendKeys(zip);
+		driver.findElement(By.linkText("search")).click();
+		
+		 Thread.sleep(1000);
+		
+		Select dropdown = new Select(driver.findElement(By.xpath(".//select[@size='5']")));
+		List<WebElement> i = dropdown.getOptions();
+		
+		for (WebElement l : i){
+			System.out.println(l.getText());
+		}
+		System.out.println("from register: " +(i.size()-1));
+		
+		//now do contacts
+		
+driver.get("http://www.pearsonschool.com/index.cfm?locator=PSZ13f");
+		
+		//click Contact your sales rep
+		driver.findElement(By.xpath("//a[@class='contactIcon']")).click();
+
+		//click School, District, Non-Profit, Corrections or Juvenile Organization
+		driver.findElement(By.id("rf_contactSalesRep")).click();
+	
+		WebDriverWait wait = new WebDriverWait(driver, 9);
+		WebElement contactrep = wait.until(ExpectedConditions.elementToBeClickable(By.id("rf_usRepFinder")));
+				contactrep.click();
+		
+		WebElement zipcode = wait.until(ExpectedConditions.elementToBeClickable(By.name("cityOrZip")));
+		
+		zipcode.sendKeys(zip);
+		// get list of all institutes
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("rf_usRepInstitutes")));
+		Select dropdown2 = new Select(driver.findElement(By.id("rf_usRepInstitutes")));
+		List<WebElement> i2 = dropdown2.getOptions();
+		// real amount of schools - 2 elect Institution+I don't see my school
+		
+		
+		
+		
+		
+		for (WebElement l2 : i2){
+			System.out.println(l2.getText());
+		}
+		System.out.println("from contacts: " +(i2.size()-2));
+
+		driver.close();
+		
+		
+		
+	}
+
+}
