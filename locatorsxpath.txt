@@ -48,4 +48,22 @@ In the list of all mobile , select ?SORT BY? dropdown as ?name?
 //System.out.println(driver.findElement(By.xpath("//li[contains(text(), 'b')]/following-sibling::li[1]")).getText());
 
 	
+	
+	
+0
+down vote
+Use [0] for the first instance
+This may be due to the seleniumIDE selecting a first instance by default You can achieve this manually with:
+
+CssSelector("span.rpText:contains(Issues Management)")[0]
+Also, if the class is unique then use it in the selector, i.e.
+
+css:
+
+driver.
+  FindElement(By.CssSelector("span.rpText:contains(Issues Management)")).Click();
+xpath:
+
+driver.findElement(By.xpath(
+"/descendant::a[@class='post-rpText'][2]:contains('Issues Management')")).click();
 	    
