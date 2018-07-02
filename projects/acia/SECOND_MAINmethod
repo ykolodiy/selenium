@@ -38,7 +38,7 @@ public class SECOND_mainmethod {
 			  
 			//step2 create  the connection object  
 			Connection con=DriverManager.getConnection(  
-			"jdbc:oracle:t  
+			"jdbc:oracle:thin:");  
 			  
 			//step3 create the statement object  
 			Statement stmt=con.createStatement();  
@@ -184,12 +184,6 @@ public class SECOND_mainmethod {
 			  		   // cell object
 					    Cell cell;	      
 			   		      
-					    cell = row0.createCell(0);
-					    cell.setCellValue("Program name");
-					    cell.setCellStyle(style1);
-				
-
-					    
 					    
 					    cell=row0.createCell(0);cell.setCellValue("Program Name");cell.setCellStyle(style1);
 					    cell=row0.createCell(1);cell.setCellValue("Child Program Name (if applicable)");cell.setCellStyle(style1);
@@ -207,13 +201,13 @@ public class SECOND_mainmethod {
 					    cell=row0.createCell(13);cell.setCellValue(rsmt.getColumnName(24));cell.setCellStyle(style2);
 					    cell=row0.createCell(14);cell.setCellValue(rsmt.getColumnName(25));cell.setCellStyle(style2);
 					    cell=row0.createCell(15);cell.setCellValue(rsmt.getColumnName(26));cell.setCellStyle(style2);
-					    cell=row0.createCell(16);cell.setCellValue(rsmt.getColumnName(27));cell.setCellStyle(style2);
-					    cell=row0.createCell(17);cell.setCellValue(rsmt.getColumnName(28));cell.setCellStyle(style3);
+					    cell=row0.createCell(16);cell.setCellValue(rsmt.getColumnName(27));cell.setCellStyle(style3);
+					    					    cell=row0.createCell(17);cell.setCellValue(rsmt.getColumnName(28));cell.setCellStyle(style3);
 					    cell=row0.createCell(18);cell.setCellValue(rsmt.getColumnName(29));cell.setCellStyle(style3);
 					    cell=row0.createCell(19);cell.setCellValue(rsmt.getColumnName(30));cell.setCellStyle(style3);
 					    cell=row0.createCell(20);cell.setCellValue(rsmt.getColumnName(31));cell.setCellStyle(style3);
 					    cell=row0.createCell(21);cell.setCellValue(rsmt.getColumnName(32));cell.setCellStyle(style3);
-					    cell=row0.createCell(22);cell.setCellValue(rsmt.getColumnName(33));cell.setCellStyle(style3);
+					    cell=row0.createCell(22);cell.setCellValue(rsmt.getColumnName(33));cell.setCellStyle(style2);
 					    cell=row0.createCell(23);cell.setCellValue(rsmt.getColumnName(34));cell.setCellStyle(style2);
 					    cell=row0.createCell(24);cell.setCellValue(rsmt.getColumnName(35));cell.setCellStyle(style2);
 					    cell=row0.createCell(25);cell.setCellValue("Online Learning Exchange (OLE)");cell.setCellStyle(style2);
@@ -225,10 +219,10 @@ public class SECOND_mainmethod {
 					    cell=row0.createCell(31);cell.setCellValue(rsmt.getColumnName(42));cell.setCellStyle(style2);
 					    cell=row0.createCell(32);cell.setCellValue(rsmt.getColumnName(43));cell.setCellStyle(style2);
 					    cell=row0.createCell(33);cell.setCellValue(rsmt.getColumnName(44));cell.setCellStyle(style2);
-					    cell=row0.createCell(34);cell.setCellValue(rsmt.getColumnName(45));cell.setCellStyle(style2);
+					    cell=row0.createCell(34);cell.setCellValue(rsmt.getColumnName(45));cell.setCellStyle(style3);
 					    cell=row0.createCell(35);cell.setCellValue(rsmt.getColumnName(46));cell.setCellStyle(style3);
 					    cell=row0.createCell(36);cell.setCellValue(rsmt.getColumnName(47));cell.setCellStyle(style3);
-					    cell=row0.createCell(37);cell.setCellValue(rsmt.getColumnName(48));cell.setCellStyle(style3);
+					    cell=row0.createCell(37);cell.setCellValue(rsmt.getColumnName(48));cell.setCellStyle(style2);
 					    cell=row0.createCell(38);cell.setCellValue(rsmt.getColumnName(49));cell.setCellStyle(style2);
 					    cell=row0.createCell(39);cell.setCellValue(rsmt.getColumnName(50));cell.setCellStyle(style2);
 					    cell=row0.createCell(40);cell.setCellValue(rsmt.getColumnName(51));cell.setCellStyle(style2);
