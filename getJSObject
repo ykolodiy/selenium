@@ -1,0 +1,42 @@
+package office;
+
+import java.lang.reflect.Field;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class getDigitalObject {
+
+	public static void main(String[] args) throws Exception, IllegalAccessException {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://www.pearsonschool.com");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		
+		//Object result = js.executeScript("return digitalData.page");
+
+		
+		// System.out.println(result.toString());
+		
+		
+		
+		Object someObject = js.executeScript("return digitalData.page");
+		for (Field field : someObject.getClass().getDeclaredFields()) {
+		    field.setAccessible(true); // You might want to set modifier to public first.
+		    Object value = field.get(someObject); 
+		    if (value != null) {
+		        System.out.println(field.getName() + "=" + value);
+		    }
+		}
+		
+		
+		
+		
+		
+		
+		driver.close();
+	}
+
+}
