@@ -1,0 +1,172 @@
+package DavidSamples;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class getlistoftabs {
+
+	public static void main(String[] args) {
+		List<String> playbooklist = new ArrayList<String>();
+		
+		String[] valueArray = { "About",
+				"Collateral",
+				"Strategies",
+				"Training",
+				"Details",
+				"Changes to Program",
+				"Components",
+				"Instructional Topics",
+				"Standards",
+				"Research & Usage",
+				"Authors",
+				"Technology",
+				"Press Releases",
+				"Collateral",
+				"Competitive Landscape",
+				"Sales Strategies & Campaigns",
+				"Sampling",
+				"Customer Training & PD",
+				"Internal Training",
+				"Program Profile",
+				"Contacts",
+				"Selling Points",
+				"Overview",
+				"Key Customer Issues",
+				"Pearson's Solutions",
+				"Portfolio Positioning",
+				"Related Programs",
+				"Changes to Program",
+				"Component Summary",
+				"Component Roll-Ups",
+				"Story Documents",
+				"Readabilities",
+				"Scope and Sequence",
+				"Assessment",
+				"Intervention/RTI",
+				"ELL",
+				"Customization",
+				"Correlations",
+				"Positioning",
+				"Marketing Material",
+				"Background Research",
+				"Efficacy/Validation",
+				"Success Stories",
+				"Awards",
+				"Testimonials",
+				"Case Studies",
+				"User List",
+				"Authors Details",
+				"Platform and Mobile",
+				"Technology Access",
+				"Demo Accounts",
+				"Support/Error Reporting",
+				"System Requirements/Tech Specs",
+				"Installation Readiness Checklist (IRC)",
+				"Press Releases",
+				"Multi-Media Assets",
+				"Posters/Banners",
+				"Advertisements/Commercials",
+				"Print Collateral",
+				"Pricing & Components",
+				"Promo & Discounts",
+				"Funding",
+				"Sample Proposals",
+				"FAQs",
+				"Presentations",
+				"Logos",
+				"Competition",
+				"Market Intelligence",
+				"Strategies & Tactics",
+				"Prework and Workshops",
+				"Events & Conferences",
+				"Pilots",
+				"Rollover",
+				"Cross Selling",
+				"Best Practices",
+				"Sampaks & BOMS",
+				"Online Samples",
+				"Loose Samples",
+				"Pilots",
+				"Program Activation",
+				"Services",
+				"Implementation/Best Practices",
+				"Basic Training/Study Guides",
+				"Recorded Trainings",
+				"Other Resources",
+				"Self Assessment"};
+		
+		
+		
+		
+		
+
+		if(System.getProperty("os.name").toLowerCase().contains("win"))
+		{
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		}
+	else {System.setProperty("webdriver.chrome.driver", "/Users/vkoloyu/chromedriver");}
+
+WebDriver driver = new ChromeDriver();
+	
+	driver.manage().window().maximize();
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//get a SITE
+	driver.get("https://staging.playbook.pearsonschool.com/index.cfm?locator=PS3497&PMDBSOLUTIONID=6724&PMDBSITEID=2781&PMDBCATEGORYID=806&PMDBSUBSOLUTIONID=&PMDBSUBJECTAREAID=&PMDBSUBCATEGORYID=25741&PMDbProgramID=134781&elementType=internal_page&elementTypeId=103#108");
+	
+		
+
+		List<WebElement> li0 = new ArrayList<WebElement>();
+		List<WebElement> li = new ArrayList<WebElement>();
+		List<WebElement> li2 = new ArrayList<WebElement>();
+		
+		li0 = driver.findElements(By.xpath(".//div[@class='headerNavs floatLeft']/ul/li/a/span"));
+		//System.out.println(li0.size());
+		for (WebElement l:li0){
+			
+			playbooklist.add(l.getAttribute("innerHTML"));
+				//System.out.println(l.getAttribute("innerHTML"));
+
+					}
+		
+
+		li = driver.findElements(By.xpath(".//div[@class='headerNavs floatLeft']/ul/li/ul/li/a"));
+		//System.out.println(li.size());
+		for (WebElement l:li){
+			playbooklist.add(l.getAttribute("innerHTML"));
+				//System.out.println(l.getAttribute("innerHTML"));
+					}
+		
+		
+		li2 = driver.findElements(By.xpath(".//div[@class='headerNavs floatLeft']/ul/li/ul/li/ul/li/a"));
+				//System.out.println(li2.size());
+		for (WebElement l:li2){
+			playbooklist.add(l.getAttribute("innerHTML"));
+				//System.out.println(l.getAttribute("innerHTML"));
+					}
+		
+		
+		
+		
+		// now compare
+		
+		
+		
+		for (String k : playbooklist){
+			
+			System.out.print(k);
+			System.out.println(Arrays.asList(valueArray ).contains(k));
+		}
+		
+		
+		driver.close();
+	}
+
+}
