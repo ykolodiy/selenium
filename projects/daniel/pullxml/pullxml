@@ -32,12 +32,17 @@ public class pullXML {
 				Document doc = docBuilder.parse(filepath);
 
 
-				 NodeList nodes = doc.getElementsByTagName("PunchinRequest");
+				// NodeList nodes = doc.getElementsByTagName("PunchinRequest");
+				 NodeList nodeList = doc.getElementsByTagName("Extrinsic");	
+				 
+				
+				
+				 /*
 				    for (int i = 0; i < nodes.getLength(); i++) {
 				      Element element = (Element) nodes.item(i);
 
-				      NodeList name = element.getElementsByTagName("scart_id");
-				      				      Element line = (Element) name.item(0);
+				      NodeList scart_id = element.getElementsByTagName("scart_id");
+				      				      Element line = (Element) scart_id.item(0);
 				      System.out.println("scart_id : " + getCharacterDataFromElement(line));
 
 				      NodeList title = element.getElementsByTagName("ListPrice");
@@ -45,15 +50,53 @@ public class pullXML {
 				      System.out.println("ListPrice: " + getCharacterDataFromElement(line));
  
 				    }
-
+*/
 				    
-				    NodeList nodeList = doc.getElementsByTagName("Extrinsic");		    
+			    
 				    
+				    System.out.println(nodeList.item(46).getTextContent());
+				    System.out.println(nodeList.item(47).getTextContent());
+				    System.out.println(nodeList.item(48).getTextContent());
+				    System.out.println(nodeList.item(49).getTextContent());
+				    System.out.println(nodeList.item(50).getTextContent());
+				    System.out.println(nodeList.item(51).getTextContent());
+				    System.out.println(nodeList.item(52).getTextContent());
+				    System.out.println(nodeList.item(53).getTextContent());
+				    System.out.println(nodeList.item(54).getTextContent());
+				    System.out.println(nodeList.item(55).getTextContent());
+				    System.out.println(nodeList.item(56).getTextContent());
+				    System.out.println(nodeList.item(57).getTextContent());
+				    System.out.println(nodeList.item(58).getTextContent());
+				    System.out.println(nodeList.item(59).getTextContent());
+				    System.out.println(nodeList.item(60).getTextContent());
+				    System.out.println(nodeList.item(61).getTextContent());
+				    System.out.println(nodeList.item(62).getTextContent());
+				    System.out.println(nodeList.item(63).getTextContent());
+				    System.out.println(nodeList.item(64).getTextContent());
+				    System.out.println( doc.getElementsByTagName("sku").item(0).getTextContent());
+				    System.out.println(nodeList.item(12).getTextContent());
+				    System.out.println(nodeList.item(13).getTextContent());
+				    System.out.println(nodeList.item(14).getTextContent());
+				    System.out.println(nodeList.item(15).getTextContent());
+				    System.out.println( doc.getElementsByTagName("scart_id").item(0).getTextContent());
+				    System.out.println( doc.getElementsByTagName("ListPrice").item(0).getTextContent());
+				    System.out.println( doc.getElementsByTagName("SalePrice").item(0).getTextContent());
+				    System.out.println( doc.getElementsByTagName("quantity").item(0).getTextContent());
+				    System.out.println(nodeList.item(0).getTextContent());
+				    System.out.println(nodeList.item(1).getTextContent());
+				    System.out.println(nodeList.item(2).getTextContent());
+				    System.out.println(nodeList.item(3).getTextContent());
+				    System.out.println(nodeList.item(4).getTextContent());
 				    System.out.println(nodeList.item(5).getTextContent());
-				    
-				    
-				    
+				    System.out.println(nodeList.item(6).getTextContent());
+				    System.out.println(nodeList.item(7).getTextContent());
+				    System.out.println(nodeList.item(8).getTextContent());
+				    System.out.println(nodeList.item(9).getTextContent());
+				    System.out.println(nodeList.item(10).getTextContent());
+				    System.out.println(nodeList.item(11).getTextContent());
 				  }
+	
+	/*
 				  public static String getCharacterDataFromElement(Element e) {
 				    Node child = e.getFirstChild();
 				    if (child instanceof CharacterData) {
@@ -63,7 +106,7 @@ public class pullXML {
 				    return "";
 				  }
 
-
+*/
 		
 
 			
