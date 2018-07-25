@@ -1,0 +1,191 @@
+package DavidSamples;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class FindNoImagesSamples_PrintURLS {
+int a = 0;
+List<String> listofsamples = new ArrayList<String>();
+List<WebElement> sampleids = new ArrayList<WebElement>();
+
+	WebDriver driver;
+	@Test
+public void TeststatePages () throws Exception, IOException
+	{
+		
+		driver.get("http://www.pearsonschool.com/index.cfm?locator=PS1zJo");
+		
+		//let login
+		driver.findElement(By.linkText("Log In")).click();
+		driver.findElement(By.id("email")).sendKeys("zz@pearson.com");
+		driver.findElement(By.id("passwd")).sendKeys("00000000");		
+		driver.findElement(By.xpath("//input[@value='Log In']")).click();
+		driver.findElement(By.xpath("//input[@value='Return to the site']")).click();
+		
+		
+		
+		
+		List<String> hrefs = new ArrayList<String>();
+		List<WebElement> disciplines=driver.findElements(By.tagName("a"));
+
+		// get amount of samples via left naw
+		int  resintllult = 0;
+		List <WebElement> li = driver.findElements(By.xpath("//div[@class='PS05lnMenuContent_sampling'][1]//li/a"));
+		
+		for (WebElement l : li) {
+			String ll = l.getText().replaceAll("[^0-9]", "");;
+
+			if (!ll.isEmpty()) {
+				int x = Integer.valueOf(ll);	
+				resintllult = resintllult +x;
+				}}
+		System.out.println("samples in left nav " + resintllult );
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	//	main loop thru lef nav and get links
+		for(int i=0;i<disciplines.size();i++)
+				
+	{ 
+		try { 
+				WebElement ele= disciplines.get(i);
+	   String href=ele.getAttribute("href");
+	   			  if (href.contains("PMDbCategoryID") && !href.contains("logout")) 
+	   		 
+	   			  {
+	   				  
+	   				  
+	   				if (  !hrefs.contains(href) )  {
+	   				  	   				  
+	   				hrefs.add(href);
+	   				//System.out.println(ele.getText());
+	   			
+	   				} }
+	   			  else {}   			  
+		     }
+	
+		catch (Exception e) {e.getMessage();}
+	}
+		
+		
+		// main loop thru disciplines
+			for ( String hre : hrefs ) {
+	   				    driver.get(hre); 
+	   				       System.out.println(driver.getCurrentUrl());
+	   				 PrintEmpty();
+	   				 
+	   				try {
+		   				String j = driver.findElement(By.linkText("2")).getAttribute("href");
+		   				    if (j != null && !j.isEmpty()) {
+		   				     driver.get(j);
+		   				       System.out.println(driver.getCurrentUrl());
+		  	   				 PrintEmpty();
+		   				    	
+		   				    }
+
+	   				} catch (Exception t){}
+
+	   				
+	   				try {
+		   					   				    
+			   				String z = driver.findElement(By.linkText("3")).getAttribute("href");
+		   				    if (z != null && !z.isEmpty()) {
+		   				     driver.get(z);
+		   				       System.out.println(driver.getCurrentUrl());
+		  	   				 PrintEmpty();
+		   				    	
+		   				    }
+	   				} catch (Exception t){}
+	   				}	
+			//System.out.println(Arrays.toString(hrefs.toArray()));	
+		
+			
+			
+			
+			// now loop thru sample programs and get all urls
+			
+			
+			for ( String x : listofsamples ) {
+				driver.get(x);
+				
+				List<WebElement> sampleids = driver.findElements(By.tagName("a"));
+				for (WebElement r : sampleids) {
+					String l = r.getAttribute("href");
+					
+					if (l != null && l.contains("sampleId")){
+						
+						System.out.println(l);
+						
+					}
+					
+				}
+			}
+			
+			
+			
+			
+	}
+			
+	
+	
+	// the method
+	public void PrintEmpty (){
+		//Start this will find empty urls	
+	List<WebElement> links=driver.findElements(By.xpath("//div[@class='PS5samplingRollupItemButton']/a"));
+				for(int i=0;i<links.size();i++)
+			{  WebElement ele= links.get(i);
+			   String src=ele.getAttribute("href");
+			   			 
+			   if (src != null && src.contains("PMDbProgramId")){
+				  System.out.println(src);
+				  listofsamples.add(src);
+				  a=a+1;
+			   }}}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+@BeforeClass
+public void beforeMethod() {
+	  
+	  System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		
+	
+}
+
+@AfterClass
+public void afterMethod() {
+			  driver.close();
+			  System.out.println("amount of samples urls= "+a);
+}
+
+
+
+}
