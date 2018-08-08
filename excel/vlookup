@@ -1,5 +1,5 @@
 package writeExcel;
-//VLOOKUP ROW1 AGAINST ROW2
+//VLOOKUP data in sheet1 AGAINST data in table in sheet 2
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,42 +19,44 @@ public class VLOOKUP {
 		XSSFWorkbook wb = new XSSFWorkbook(fis);
 		//focus on sheet1 index0
 		XSSFSheet sheet1 = wb.getSheetAt(0);
+		XSSFSheet sheet2 = wb.getSheetAt(1);
 		DataFormatter formatter = new DataFormatter();
 	//row1 col1
 		
-		Integer lastRow1 = 19;
-		Integer lastRow2 = 16;
-		Integer yes = 0;
-		Integer no = 0;
+	// how many rows in sheet 1 and sheet2
+		int noOfColumns1 = sheet1.getPhysicalNumberOfRows();
+		int noOfColumns2 = sheet2.getPhysicalNumberOfRows();
+	
+	
 		
 
-		for (int i=1; i<=lastRow1; i++)
+		for (int i=1; i<noOfColumns1; i++)
 		{
+			
+			//get the first item to do lookup for
 			String data0 = formatter.formatCellValue(sheet1.getRow(i).getCell(0));
-			sheet1.getRow(i).createCell(1).setCellValue("NO");
-			for (int j=1; j<=lastRow2; j++){
-				String data1 = formatter.formatCellValue(sheet1.getRow(j).getCell(2));
+			
+			
+			//do lookup
+			for (int j=1; j<noOfColumns2; j++){
+				String data1 = formatter.formatCellValue(sheet2.getRow(j).getCell(0));
 				if (data0.equals(data1)){
-					sheet1.getRow(i).createCell(1).setCellValue("YES");
-					yes = yes+1;
+					sheet1.getRow(i).createCell(1).setCellValue(formatter.formatCellValue(sheet2.getRow(j).getCell(1)));
+					
 				}
-				
-			}
-			
-			
-			
-			//sheet1.getRow(i).createCell(1).setCellValue(data0);
+			 }
+
 
 		}
-		no = lastRow1 - yes;
+		
 		
 		//save file
 		FileOutputStream fout = new FileOutputStream (src);
 		wb.write(fout);
+		wb.close();
 		
-		System.out.println("yes: "+yes);
-		System.out.println("no: "+no);
-		
+	
+	
 
 }
 }
