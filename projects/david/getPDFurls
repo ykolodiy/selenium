@@ -1,0 +1,91 @@
+package Samples;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class redirect {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		
+		try (BufferedReader br = new BufferedReader(new FileReader("C:\\tmp\\states.txt"))) {
+	     int i=1;
+			String line;
+			while ((line = br.readLine()) != null) {
+
+				driver.get(line);
+				Thread.sleep(1000);
+				if (driver.findElements(By.xpath("//input[@value='I Agree']")).size() > 0){
+					driver.findElement(By.xpath("//input[@value='I Agree']")).click();
+					
+				}
+				
+				
+				if (driver.findElements(By.tagName("iframe")).size() >0){
+					
+					System.out.println(driver.findElement(By.tagName("iframe")).getAttribute("src"));
+					
+				}
+				
+				else {
+				
+				System.out.println(driver.findElement(By.tagName("h1")).getText());
+				
+				}
+				
+				Thread.sleep(1000);
+				verifyLinkActive(line, i);
+				i=i+1;
+			}
+
+				//driver.close();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}}
+		
+		
+		
+		public static void verifyLinkActive(String linkUrl, int i)
+		{ 
+			
+	        try 
+	        {
+	           URL url = new URL(linkUrl);
+	           
+	           HttpURLConnection httpURLConnect=(HttpURLConnection)url.openConnection();
+	           
+	           httpURLConnect.setConnectTimeout(3000);
+	           httpURLConnect.setReadTimeout(10000);
+	           httpURLConnect.connect();
+	           
+	           
+	          // System.out.println(i+">"+httpURLConnect.getResponseCode());
+	           
+	          if(httpURLConnect.getResponseCode() !=200)
+	          {
+	              System.out.println(linkUrl+">"+httpURLConnect.getResponseCode());
+	           
+	           
+	            }
+	           else
+	           {
+	               //System.out.print(".");
+	      
+	           }
+	        } catch (Exception e) {
+	           
+	        }
+	    } 
+		
+		
+	}
