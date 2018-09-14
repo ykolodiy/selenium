@@ -1,0 +1,98 @@
+package office;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+public class urlparam {
+
+	public static void main(String[] args) {
+	
+		
+		
+		String [] u = {
+				
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&locale=en-US-GF01&messageType=PLAddToCart&entryPoint=punchin&auxstorefront=PL&scart_id=5322816&promo_code=B3949&siteId=41&siteLabel=Pearson School&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322682&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322713&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322791&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322823&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&locale=en-US-GF01&messageType=PLAddToCart&entryPoint=punchin&auxstorefront=PL&scart_id=5322713&promo_code=PPS09&siteId=2824&siteLabel=Private and Parochial&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&locale=en-US-GF01&messageType=PLAddToCart&entryPoint=punchin&auxstorefront=PL&scart_id=5322719&promo_code=PPS09&siteId=2824&siteLabel=Private and Parochial&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&locale=en-US-GF01&messageType=PLAddToCart&entryPoint=punchin&auxstorefront=PL&scart_id=5322735&promo_code=PPS09&siteId=2824&siteLabel=Private and Parochial&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&locale=en-US-GF01&messageType=PLAddToCart&entryPoint=punchin&auxstorefront=PL&scart_id=5322748&promo_code=PPS09&siteId=2824&siteLabel=Private and Parochial&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&locale=en-US-GF01&messageType=PLAddToCart&entryPoint=punchin&auxstorefront=PL&scart_id=5322824&promo_code=PPS09&siteId=2824&siteLabel=Private and Parochial&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&locale=en-US-GF01&messageType=PLAddToCart&entryPoint=punchin&auxstorefront=PL&scart_id=5322826&promo_code=PPS09&siteId=2824&siteLabel=Private and Parochial&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&locale=en-US-GF01&messageType=PLAddToCart&entryPoint=punchin&auxstorefront=PL&scart_id=5322823&promo_code=B3949&siteId=41&siteLabel=Pearson School&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5321716&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322321&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322430&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322647&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322673&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322683&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322696&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322705&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322712&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322715&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322720&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322728&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322729&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322733&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322734&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322735&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322736&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322737&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322740&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322742&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322747&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322748&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322751&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322765&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322779&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322782&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322784&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322793&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322811&entryPoint=punchin&locale=en-US-GF01&promo_code=B3949&siteId=41&auxstorefront=PL&siteFamilyId=1&brand_header_url=//www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PSZ3Dd&elementType=Cart&messageType=PLAddToCart&siteLabel=Pearson+School&brand_footer_url=//www.pearsonschool.com/admin/secure/microfoot_ps.html",
+				"/Comergent/en/US/punchin/pearson?cmd=PLAddToCart&scart_id=5322826&entryPoint=punchin&locale=en-US-GF01&promo_code=PPS09&siteId=2824&auxstorefront=PL&siteFamilyId=1&brand_header_url=http://www.pearsonschool.com/admin/secure/microhead_ps.html&ofrurl=index.cfm?locator=PS1t7j&elementType=Cart&messageType=PLAddToCart&siteLabel=Private+and+Parochial&brand_footer_url=http://www.pearsonschool.com/admin/secure/microfoot_ps.html",
+
+
+
+				
+				
+		};
+		
+		
+		
+		
+		
+		for (int i=0;i<u.length;i++)
+		
+		{
+			
+			String params = u[i];
+
+		try {
+		    Pattern p = Pattern.compile("scart_id=([^&]+)");
+		    Matcher m = p.matcher(params);
+		    while (m.find()) {
+		    	String cartid = m.group();
+		        System.out.println(cartid.substring(9,cartid.length()));
+		    } 
+		} catch (PatternSyntaxException ex) {
+		    // error handling
+		}	
+			
+		}
+		
+		
+	
+		
+		
+		
+		
+		
+		
+
+	}
+
+}
