@@ -1,0 +1,51 @@
+/*java, selenium web driver
+
+this script Check the web page for broken links
+1 ENTER THE URL OF A WEB SITE
+2 THE SCRIPT WILL GO THRU ALL LINKS OF THE WEB URL AND GIVES YOU RESULTS OK OR ERROR
+
+*/
+
+
+package brokenlink;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BrokenLink3 {
+	
+	
+public static void main (String[] args)
+{
+System.out.println(BrokenLink3.exists("http://98.220.9.24/indexgg.html"));
+
+/*
+  output :
+    true
+    false
+*/    
+}
+
+public static boolean exists(String URLName){
+try {
+  HttpURLConnection.setFollowRedirects(false);
+  // note : you may also need
+  //        HttpURLConnection.setInstanceFollowRedirects(false)
+  HttpURLConnection con =
+     (HttpURLConnection) new URL(URLName).openConnection();
+  con.setRequestMethod("HEAD");
+  return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+}
+catch (Exception e) {
+   e.printStackTrace();
+   return false;
+}
+}
+}
