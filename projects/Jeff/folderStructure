@@ -11,6 +11,8 @@ import java.net.URLEncoder;
 
 import org.apache.commons.io.FilenameUtils;
 
+import com.google.common.net.UrlEscapers;
+
 public class CreateFolderDownloadFiles {
 
 	public static void main(String[] args) throws MalformedURLException, IOException, URISyntaxException {
@@ -19,12 +21,19 @@ public class CreateFolderDownloadFiles {
 		 {
 			 
 			 
-			 String fileIN = "http://teams.inside.pearson.com/sch2/sim/instructional/Consulting%20First/Consulting%20First!%209-08-09.doc";
-			 String fileINDecoded = new java.net.URI(fileIN).getPath();
+			 String fileIN2 = "http://teams.inside.pearson.com/sch2/sim/instructional/Shared Documents/School Travel Policy Summary 2011.doc";
 			 
-			 String getfolderStructure = FilenameUtils.getPath(fileINDecoded).replaceAll("http://teams.inside.pearson.com/", "");
+			//encoded to use in buffer
+			 String fileIN = UrlEscapers.urlFragmentEscaper().escape(fileIN2);
 			 
-			 String getFilename = FilenameUtils.getName(fileINDecoded);
+
+			 
+			// String fileINDecoded = new java.net.URI(fileIN).getPath();
+			 
+			 
+			 String getfolderStructure = FilenameUtils.getPath(fileIN2).replaceAll("http://teams.inside.pearson.com/", "");
+			 
+			 String getFilename = FilenameUtils.getName(fileIN2);
 			
 			 String fileOut = getfolderStructure+ getFilename;
 			 
