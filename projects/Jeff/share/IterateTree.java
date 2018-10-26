@@ -10,7 +10,7 @@ public class IterateTree {
 	public static void main(String[] args) throws Exception {
 	
 		  
-		  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\FileReportUnclean.txt")); 
+		  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\noneeded\\FileReportUnclean.txt")); 
 		  
 		  String st; 
 		  while ((st = br.readLine()) != null) 

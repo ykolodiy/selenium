@@ -13,20 +13,15 @@ import org.apache.commons.io.FilenameUtils;
 
 public class CompareTXT {
 
-
-	
 	public static void main(String[] args) throws Exception {
-	
-	
-		  
+ 
 		  BufferedReader br1 = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\1.txt")); 
 		  BufferedReader br2 = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\2.txt")); 
-		  
-		  
+  
 		  String st1;
 		  String st2; 
-		 List<String> l1 = new ArrayList();
-		 List<String> l2 = new ArrayList();
+		 List<String> l1 = new ArrayList<String>();
+		 List<String> l2 = new ArrayList<String>();
 		  
 		  
 		  while ((st1 = br1.readLine()) != null) 
@@ -46,9 +41,7 @@ public class CompareTXT {
 				}
 			  
 		  }
-		  
-		  
-		  
+	  
 		br1.close();
 		br2.close();
 		

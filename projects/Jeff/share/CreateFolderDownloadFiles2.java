@@ -13,13 +13,13 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import com.google.common.net.UrlEscapers;
 
-public class CreateFolderDownloadFiles {
+public class CreateFolderDownloadFiles2 {
 
 	public static void main(String[] args) throws MalformedURLException, IOException, URISyntaxException {
 		// base where home folder will be :    C:\Users\vkoloyu\GIT\ls-team\yuriy_kolodiy\automation_scripts\PearsonProjects
 
 		 {
-			  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\3attemps\\download2.txt")); 
+			  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\3attemps\\29chars.txt")); 
 			  String st; 
 			  int x=0;
   
@@ -34,19 +34,23 @@ public class CreateFolderDownloadFiles {
 			 String fileIN = UrlEscapers.urlFragmentEscaper().escape(fileIN2);
 
 			 
-			 //get folder path
-			 String getfolderStructure = FilenameUtils.getPath(fileIN2).replaceAll("http://teams.inside.pearson.com/", "");
-			 
+		
 			 //get file name
 			 String getFilename = FilenameUtils.getName(fileIN2);
 			
 			 //get file path
-			 String fileOut = getfolderStructure+ getFilename;
+			 String fileOut = "./justdownload/"+ getFilename;
 			 
 			 //creating a folder structure here. if it exist will not do nothing
 			  try{
-			  File dir = new File(getfolderStructure);
-			  dir.mkdirs();}
+			  File dir = new File("justdownload");
+			  
+			  if (!dir.exists()) {
+			  dir.mkdirs();
+			  }
+			  
+			  
+			  }
 			  catch (Exception e){
 			  //System.err.println("Error Folder: " + e.getMessage());
 			  System.out.println(fileOut+" > Folder Problem");

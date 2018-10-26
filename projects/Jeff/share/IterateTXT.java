@@ -14,57 +14,53 @@ public class IterateTXT {
 		
 		String [] x = {
 				
-				"com",
-				"aspx",
-				"doc",
-				"xlsx",
-				"pdf",
-				"xls",
-				"tif",
-				"ppt",
-				"txt",
-				"vsd",
-				"html",
-				"gif",
-				"vdx",
-				"docx",
-				"msg",
-				"jpg",
 				"png",
-				"pptx",
-				"mpp",
-				"mht",
-				"6662",
-				"zip",
-				"htm",
-				"swf",
-				"js",
+				"master",
+				"xls",
+				"docx",
+				"jpg",
+				"doc",
+				"pdf",
+				"ppt",
+				"xlsx",
 				"exe",
+				"zip",
+				"csv",
+				"xlsm",
+				"avi",
+				"pptm",
+				"pptx",
 				"pub",
 				"dot",
-				"csv",
+				"htm",
+				"smc",
+				"xlt",
 				"wmv",
 				"mp4",
+				"html",
 				"mp3",
 				"m4v",
 				"mov",
 				"psd",
 				"key",
 				"arf",
-				"0",
+				"ai",
 				"tiff",
+				"swf",
 				"kmz",
-				"2017",
 				"eps",
-				"mpg",
+				"crdownload",
 				"dotx",
-				"pptm",
-				"org",
+				"gif",
+				"msg",
+				"mpg",
 				"ppsx",
+				"jpeg",
 				"webm",
-				"jpeg"
+				"tif",
+				"txt"
 
-		};
+};
 		
 		
 		
@@ -74,7 +70,7 @@ public class IterateTXT {
 		for (int u=0;u<x.length;u++)
 		{
 		  int y=0;
-		  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\clean.txt")); 
+		  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\sharepoint2.txt")); 
 		  
 		  String st; 
 		  
