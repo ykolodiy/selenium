@@ -1,0 +1,63 @@
+package sharepoint;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+
+public class diff {
+
+	public static void main(String[] args) {
+		
+		// x new report y old report
+		
+		String x = "http://teams.inside.pearson.com/sch2/sim/p/read/Reading Street 2013/Leveled Readers/Gr1_CncptRdrsLabels.doc";
+		
+		
+		String y = "http://teams.inside.pearson.com/sch2/sim/p/read/rst13/Leveled Readers/Gr1_CncptRdrsLabels.doc";
+	
+
+		
+		
+		
+		String[] X = x.split("/");
+		String[] Y = y.split("/");
+
+		
+		  if (Arrays.equals(X, Y))
+		  		{
+	            System.out.println("Same"); 
+	            }
+	        else
+	        	{
+	    		//System.out.println(Arrays.toString(X));
+	    		//System.out.println(Arrays.toString(Y));
+	        	}
+		
+		  
+		  
+		  for (int i = 0 ; i < X.length ; i++) {
+			  if (!Arrays.stream(Y).anyMatch(X[i]::equals)) {
+				  System.out.print(X[i]+">");
+			  } 
+			  if (!Arrays.stream(X).anyMatch(Y[i]::equals)) {
+				  System.out.print(Y[i]+ " ");
+			  } 
+			  
+			  
+			  
+		  }
+			
+
+		  System.out.println();
+		  
+		  
+		  
+		  
+		  
+		  
+	}
+}
+
+
