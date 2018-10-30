@@ -38,11 +38,8 @@ public class diff {
 		  
 		  
 		  for (int i = 0 ; i < X.length ; i++) {
-			  if (!Arrays.stream(Y).anyMatch(X[i]::equals)) {
-				  System.out.print(X[i]+">");
-			  } 
-			  if (!Arrays.stream(X).anyMatch(Y[i]::equals)) {
-				  System.out.print(Y[i]+ " ");
+			  if (!X[i].equals(Y[i])) {
+				  System.out.println(X[i]+">"+Y[i]);
 			  } 
 			  
 			  
