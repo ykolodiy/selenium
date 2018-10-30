@@ -1,10 +1,14 @@
 opera
 	public static void main(String[] args) {
-		System.setProperty("webdriver.opera.driver", "C:\\tmp\\operadriver.exe");
-		
-		OperaOptions oo = new OperaOptions();
-		oo.setBinary("C:\\Users\\vkoloyu\\AppData\\Local\\Programs\\Opera\\launcher.exe");
-		WebDriver driver = new OperaDriver(oo);
+				System.setProperty("webdriver.opera.driver", "C:\\users\\vkoloyu\\operadriver.exe");
+			
+			
+			 OperaOptions options = new OperaOptions();
+		        options.setBinary("C:\\Users\\vkoloyu\\AppData\\Local\\Programs\\Opera\\56.0.3051.52\\opera.exe");
+		        
+			WebDriver driver = new OperaDriver(options);
+			
+		driver.manage().window().maximize();
 		
 	
 		driver.get("https://weather.com/");
