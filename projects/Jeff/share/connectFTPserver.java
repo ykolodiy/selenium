@@ -14,12 +14,10 @@ import com.jcraft.jsch.SftpException;
 public class connectFTPserver {
 	static int files = 0;
 	static int folders = 0;
-	
-	
-	
+
     public static void displayIt(String adress, ChannelSftp sftpChannel) throws SftpException{
         sftpChannel.cd(adress);  
-        Vector<LsEntry> filelist = sftpChannel.ls(adress);
+        Vector<ChannelSftp.LsEntry> filelist = sftpChannel.ls(adress);
          for(int i=0; i<filelist.size();i++){
              LsEntry entry = (LsEntry) filelist.get(i);
              if (entry.getFilename().equals(".") || entry.getFilename().equals("..")) {
@@ -43,19 +41,16 @@ public class connectFTPserver {
 		    JSch jsch = new JSch();
 	        Session session = null;
 	        try {
-	            session = jsch.getSession("acer", "98.220.9.24", 22);
+	            session = jsch.getSession("login", "domain.com", 22);
 	            session.setConfig("StrictHostKeyChecking", "no");
-	            session.setPassword("Comrade20");
+	            session.setPassword("");
 	            session.connect();
 	            System.out.println("Connected to SFTP server");
 
 	            Channel channel = session.openChannel("sftp");
 	            channel.connect();
-	            
-	      
-	        ChannelSftp sftpChannel = (ChannelSftp) channel;     
-		  
-		  
+	            	      
+	            ChannelSftp sftpChannel = (ChannelSftp) channel;     
 
 	            displayIt("/home/acer", sftpChannel);
 	        	System.out.println("files: "+(files-folders));
@@ -63,14 +58,10 @@ public class connectFTPserver {
 	            
 	            sftpChannel.exit();
 	            session.disconnect();
- }    
-	        
-	        
+ }    	        
 	        catch (JSchException e) {
 	            e.printStackTrace();  
 	        } catch (SftpException e) {
 	            e.printStackTrace();
 	        }
-	        
-
-	}}
+}}

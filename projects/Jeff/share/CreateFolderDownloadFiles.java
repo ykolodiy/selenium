@@ -19,7 +19,7 @@ public class CreateFolderDownloadFiles {
 		// base where home folder will be :    C:\Users\vkoloyu\GIT\ls-team\yuriy_kolodiy\automation_scripts\PearsonProjects
 
 		 {
-			  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\3attemps\\download2.txt")); 
+			  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\5\\13923.txt")); 
 			  String st; 
 			  int x=0;
   

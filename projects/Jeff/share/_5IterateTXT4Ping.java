@@ -20,11 +20,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.google.common.net.UrlEscapers;
 
-public class IterateTXT4Ping {
+public class _5IterateTXT4Ping {
 	
 	public static void main(String[] args) throws Exception {
 
-		  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\4\\p13872.txt")); 
+		  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\5\\joe.txt")); 
 		  
 		  String st; 
 		  int x=1;
@@ -33,11 +33,11 @@ public class IterateTXT4Ping {
 		  {
          
 			//String s = "http://"+st;
-			// encode
+			
 	        String ss = UrlEscapers.urlFragmentEscaper().escape(st);
 
 	        try {
-			System.out.println(x+" "+st+">"+IterateTXT4Ping.exists(ss));
+			System.out.println(x+" "+st+">"+_5IterateTXT4Ping.exists(ss));
 	        }
 	        catch(Exception e) {
 	        	System.out.println(x+" "+st+">ERROR");

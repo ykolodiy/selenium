@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class _3urlBreadCrumbs {
+public class Tab1Jeff {
 
 	public static void main(String[] args) throws IOException {
 		if(System.getProperty("os.name").toLowerCase().contains("win"))
@@ -25,7 +25,7 @@ WebDriver driver = new ChromeDriver();
 	
 
 
-BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\7\\dirs.txt")); 
+BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\5\\tab1.txt")); 
 String st; 
 
 
@@ -36,21 +36,20 @@ while ((st = br.readLine()) != null)
 
 	String u = st;
 	try {
-	driver.get("http://teams.inside.pearson.com/sch2/sim/p/"+u);
+	driver.get(u);
 	System.out.print(u+"*");
 	
 	
 	
 	
-	List<WebElement> bd=driver.findElements(By.xpath("//span[@id='ctl00_PlaceHolderTitleBreadcrumb_ContentMap']/span"));
-	for(int i=0;i<bd.size();i++)
-	{
-		
-		WebElement ele= bd.get(i);
-		String url=ele.getText();
-		System.out.print(url);
+	List<WebElement> bd=driver.findElements(By.xpath("//*[@id='WebPartWPQ1']/table[2]/tbody/tr[2]/td/table/tbody/tr/td"));
+if (bd.size() > 0)
+{
+	System.out.println(1);
 	}
-	System.out.println();
+
+else {System.out.println(0);};
+
 	}
 	
 	catch(Exception e) {System.out.println("NO BREADCRUNBS");

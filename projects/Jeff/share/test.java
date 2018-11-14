@@ -1,17 +1,25 @@
 package sharepoint;
 
-import java.io.UnsupportedEncodingException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.net.URLDecoder;
+
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
+
 import com.google.common.net.UrlEscapers;
 
 public class test {
-
 	public static void main(String[] args) throws Exception {
+
 		
-		String cp = "http://teams.inside.pearson.com/sch2/sim/p/math/CMP3/CMP3%20Program%20Agnostic%20Features[1].pdf";
-		String result = java.net.URLDecoder.decode(cp, "UTF-8");
-		System.out.println(result);
-		System.out.println(UrlEscapers.urlFragmentEscaper().escape(StringEscapeUtils.unescapeHtml4(result)));
+		String p = "http://teams.inside.pearson.com/sch2/sim/p/pd/pd/Programs/Literacy/DRA%E2%84%A22/Agendas/Lit_DRA2_DiggingInData.pdf";
+		
+
+		
+		 String fileOut = FilenameUtils.getPath(p).replaceAll("http://teams.inside.pearson.com/", "");
+		 
+		 System.out.println(fileOut);
 	}
 
 }

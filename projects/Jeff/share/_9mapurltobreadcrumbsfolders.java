@@ -1,5 +1,5 @@
 package sharepoint;
-// files
+// folders
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import org.apache.commons.io.FilenameUtils;
 
-public class _9mapurltobreadcrumbs {
+public class _9mapurltobreadcrumbsfolders {
 
 	public static void main(String[] args) throws Exception {
 	
@@ -39,7 +39,7 @@ public class _9mapurltobreadcrumbs {
 			  
 			  
 			  //crawl here
-			  BufferedReader br3 = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\6\\6files.txt")); 
+			  BufferedReader br3 = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\6\\6folders.txt")); 
 			  String st3; 
 			  
 			  
@@ -49,14 +49,14 @@ public class _9mapurltobreadcrumbs {
 
 				// get path name
 				
-						String path = FilenameUtils.getPath(st3).replace("http://teams.inside.pearson.com/sch2/sim/p/", "");
+						//String path = FilenameUtils.getPath(st3).replace("http://teams.inside.pearson.com/sch2/sim", "");
+						
+				  String path = st3+"/";
+						
 						//System.out.println(path);
 				
 						
-				// get file name
-						
-				        String name = FilenameUtils.getName(st3);
-				        //System.out.println(name);
+		
 			  
 
 			  
@@ -70,12 +70,12 @@ public class _9mapurltobreadcrumbs {
 						
 						  
 						// print old vs new file url
-						  System.out.print(path+name+"*");
+						  System.out.print(path+"*");
 						 // System.out.println("/"+y+"/"+name);
-						  System.out.println(y+name);
+						  System.out.println(y);
 						  }
 						  catch(Exception e) {
-							  System.out.println(path+name+"*ERROR"); 
+							  System.out.println(path+"*ERROR"); 
 							  
 						  }
 			  

@@ -8,13 +8,13 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FilenameUtils;
 
-public class ExtractSpecialCOUNT {
+public class _6aaExtractSpecialCOUNT {
 
 	public static void main(String[] args) throws IOException {
 	
 		
 		int y=0;
-		  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\3attemps\\p.txt")); 
+		  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\vkoloyu\\Projects\\JEFF\\sharepoint\\8\\files1.txt")); 
 		  String st; 
 		  
 		  
@@ -27,7 +27,7 @@ public class ExtractSpecialCOUNT {
 			
 			       	// for square braket use "\\[[^\\[]*\\]"
 			       	
-					Pattern z = Pattern.compile("[;]", Pattern.CASE_INSENSITIVE);
+					Pattern z = Pattern.compile("[’]", Pattern.CASE_INSENSITIVE);
 					Matcher match = z.matcher(x);
 					while (match.find()) {
 					     //System.out.println("Special character at index "+ match.start() +" - "+ (match.end()-1));

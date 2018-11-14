@@ -20,7 +20,7 @@ public class ISOtoUTF {
 
 	public static void main(String[] args) throws UnsupportedEncodingException, MalformedURLException, URISyntaxException {
 		//CONVERT ISO TO UTF
-		String encodedWithISO88591 = "teams.inside.pearson.com/sch2/sim/p/read/myView Literacy/Story Documents/Handwriting_mVÂ©2020_8.14.17.pdf";
+		String encodedWithISO88591 = "Resources on AutÃ©ntico Via OpenEd.docx";
 		
 		//String encodedWithISO88591 = "teams.inside.pearson.com/sch2/sim/p/human/apss/US_Gov/Edwards, 17th Edition AP ©2018/Preface and Select Chapters/A02_EDWA6571_17_AP_FM.pdf";
 		
@@ -31,12 +31,20 @@ public class ISOtoUTF {
 		
 		
 		
+		String TEXTTOISO = new String("teams.inside.pearson.com/sch2/sim/p/human/abriendo/Covers ©2012".getBytes("UTF-8"), "ISO-8859-1");
+		
+		System.out.println("Converted UTF to ISO: "+TEXTTOISO);
+		
+		
+		
+		
+		
 		
 				// ENCODE URL
 	
 		System.out.println("Encoded: "+UrlEscapers.urlFragmentEscaper().escape(decodedToUTF8));
 		
-		System.out.println("Encoded2: "+UrlEscapers.urlFragmentEscaper().escape("http://teams.inside.pearson.com/sch2/sim/p/pd/pd/Programs/Literacy/Words Their Way™/Agendas/Lit_WTW_TrainingTeachers_3Day.pdf"));
+		System.out.println("Encoded2: "+UrlEscapers.urlFragmentEscaper().escape("http://teams.inside.pearson.com/sch2/sim/p/salesshared/proposal/Humanities Proposals/American Government Roots  Reform.xls"));
 	
 		System.out.println("Encoded3: "+UrlEscapers.urlFragmentEscaper().escape("https://uswip.pearsoncms.com/alfresco/s/api/path/content;cm:content/workspace/SpacesStore/company_home/sites/ls-webops-testing/documentLibrary/YKBulkUploadFilesWithCharacters/uploadviaWEB/sch2/sim/p/salesshared/proposal/Math Proposals/Investigations en español 2008.xlsx"));
 		
