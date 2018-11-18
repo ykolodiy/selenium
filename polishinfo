@@ -1,0 +1,54 @@
+package start;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class praca {
+
+	public static void main(String[] args) {
+		{
+			
+	System.setProperty("webdriver.chrome.driver", "/Users/vkoloyu/jars/chromedriver");
+		
+			
+			
+		WebDriver driver = new ChromeDriver();
+	List<Integer> Highestint= new ArrayList<Integer>();
+	//get a SITE
+			driver.get("http://polishinfo.us/listing-category/praca-rozna-misc-jobs/");
+
+			
+			List<WebElement> pagination = driver.findElements(By.xpath("//ul[@class='pagination']/li"));
+			
+			for (WebElement p : pagination) {
+				
+				Highestint.add(Integer.valueOf(p.getText()));
+			}
+			int maxpage = Collections.max(Highestint);
+			//System.out.println(maxpage);
+			
+			
+			for (int i=1;i<=maxpage;i++)
+			{
+			driver.get("http://polishinfo.us/listing-category/praca-rozna-misc-jobs/page/" + i);
+			if (driver.findElements(By.xpath("//*[contains(text(), 'Pakowanie')]")).size() > 0)
+			{
+				System.out.println("page: "+i);
+			}
+			
+			
+			}
+			driver.close(
+					
+					);
+		}
+
+	}
+
+}
