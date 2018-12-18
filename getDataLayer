@@ -1,0 +1,45 @@
+package E2E;
+
+import java.text.Format.Field;
+import java.util.Arrays;
+import java.util.List;
+
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import net.sf.json.JSON;
+
+public class getid {
+
+	public static void main(String[] args) throws Exception, IllegalAccessException {
+		System.setProperty("webdriver.chrome.driver", "C:\\temp\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.pearsonschool.com/index.cfm?locator=PS1t3p");
+		  Cookie name = new Cookie("LS_DEV", "1");
+			driver.manage().addCookie(name);
+			driver.get("http://www.pearsonschool.com/index.cfm?locator=PS1t3p");
+			Thread.sleep(1000);
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			
+			
+			List result = (List) js.executeScript("return dataLayer");
+
+			
+			// System.out.println(result.toString());
+			 System.out.println(Arrays.toString(result.toArray()));
+			
+			
+			
+		
+		driver.close();
+	}
+
+}
