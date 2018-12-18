@@ -1,0 +1,82 @@
+package E2E;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.json.*;
+
+import org.json.simple.JSONObject;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import net.sf.json.JSONArray;
+
+public class getid {
+
+	public static void main(String[] args) throws Exception, IllegalAccessException {
+		System.setProperty("webdriver.chrome.driver", "C:\\temp\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.pearsonschool.com/index.cfm?locator=PS1t3p");
+		  Cookie name = new Cookie("LS_DEV", "1");
+			driver.manage().addCookie(name);
+			driver.get("http://www.pearsonschool.com/index.cfm?locator=PS1t3p");
+			Thread.sleep(1000);
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			
+			
+			List result = (ArrayList) js.executeScript("return dataLayer");
+	
+			
+			Gson gson = new GsonBuilder().create();
+			JsonArray myCustomArray = gson.toJsonTree(result).getAsJsonArray();
+			
+			System.out.println("my3: "+myCustomArray.toString());
+			
+			for (JsonElement pa : myCustomArray) {
+				
+			    JsonObject paymentObj = pa.getAsJsonObject();
+			  
+			    String     quoteid     = paymentObj.toString();
+			    System.out.println(quoteid);
+			   
+				
+			}
+			JsonObject paymentObj2 = (JsonObject) myCustomArray.get(0);
+			System.out.println(paymentObj2);
+			
+			//this works
+			System.out.println(new Gson().fromJson(paymentObj2,JsonObject.class).getAsJsonObject().get("site").getAsJsonObject().get("siteId").getAsString());	
+		
+			/*
+			String json = new Gson().toJson(result);
+			System.out.println("my: "+json);
+	        */
+
+		String k = result.get(0).toString();
+		
+Pattern pattern = Pattern.compile("siteId=([^,]+)");
+		
+		Matcher matcher = pattern.matcher(k);
+		if (matcher.find())
+		{
+			String cartid = matcher.group();
+	        System.out.println("regex: "+cartid.substring(0,cartid.length()));
+		}
+		
+
+			
+			driver.close();
+	}
+
+}
