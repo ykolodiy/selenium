@@ -38,6 +38,19 @@ public class getid {
 			
 			
 			
+			
+					String k = result.get(0).toString();
+		
+Pattern pattern = Pattern.compile("siteId=([^,]+)");
+		
+		Matcher matcher = pattern.matcher(k);
+		if (matcher.find())
+		{
+			String cartid = matcher.group();
+	        System.out.println(cartid.substring(0,cartid.length()));
+		}
+		
+			
 		
 		driver.close();
 	}
