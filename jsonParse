@@ -80,3 +80,20 @@ Pattern pattern = Pattern.compile("siteId=([^,]+)");
 	}
 
 }
+
+
+
+
+//System.out.println(new Gson().fromJson(jsonLine,JsonObject.class).getAsJsonObject().get("data").getAsJsonObject().get("translations").getAsJsonArray().get(0).getAsJsonObject().get("translatedText").getAsString());
+for
+jsonLine = "
+{
+ "data": {
+  "translations": [
+   {
+    "translatedText": "Hello world"
+   }
+  ]
+ }
+}
+";
