@@ -15,10 +15,10 @@ public class getDigitalObject {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		
 		
-		//Object result = js.executeScript("return digitalData.page");
+		Object result = js.executeScript("return digitalData.page");
 
 		
-		// System.out.println(result.toString());
+		 System.out.println(result.toString());
 		
 		
 		
