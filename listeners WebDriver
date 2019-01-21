@@ -1,0 +1,852 @@
+https://www.softwaretestingmaterial.com/webdriver-event-listeners/
+
+WebDriver Event Listeners In Selenium | Selenium Tutorial
+
+Last Updated on March 29, 2017 by Rajkumar
+
+In this post, we see WebDriver Event Listeners in Selenium WebDriver. Listeners “listen” to the event defined in the selenium script and behave accordingly. The main purpose of using listeners is to create logs and reports. There are many types of listeners such as WebDriver Event Listeners and TestNG Listeners. Here in this post, we see WebDriver Event Listeners.
+
+We need to know the following class and interface when we talk about listeners in Selenium.
+
+WebDriverEventListener: This WebDriver Event Listener interface allows us to implement the methods
+
+Once the script is executed, Selenium WebDriver does perform activities such as Type, Click, Navigate etc., To keep track of these activities we use WebDriver Event Listeners interface.
+
+EventFiringWebDriver: This EventFiringWebDriver class actually fire WebDriver event
+
+Lets see how to implement Listeners in Selenium WebDriver Script.
+
+Step 1: Create a Class “EventCapture” to implement WebDriverEventListener methods
+
+Step 2: Create another Class “ListenerMainClass” and write a script (which ever script you prefer)
+
+Step 3: In the Class “ListenerMainClass“, Create EventFiringWebDriver object and pass driver object as a parameter
+EventFiringWebDriver eventHandler = new EventFiringWebDriver(driver);
+1
+	
+EventFiringWebDriver eventHandler = new EventFiringWebDriver(driver);
+
+Step 4: In the Class “ListenerMainClass“, Create an object of the Class “EventCapture” where we implemented all the methods of WebDriverEventListener to register with EventFiringWebDriver
+EventCapture eCapture = new EventCapture();
+1
+	
+EventCapture eCapture = new EventCapture();
+
+Lets see each step in detail to implement the WebDriver Event Listeners in Selenium:
+
+Step 1: Create a Class “EventCapture” to implement WebDriverEventListener methods
+package listeners;
+
+public class EventCapture{
+	
+}
+1
+2
+3
+4
+5
+	
+package listeners;
+ 
+public class EventCapture{
+ 
+}
+
+package listeners;
+
+public class EventCapture implements WebDriverEventListener{
+
+	
+
+}
+1
+2
+3
+4
+5
+6
+7
+	
+package listeners;
+ 
+public class EventCapture implements WebDriverEventListener{
+ 
+ 
+ 
+}
+
+Mouse hover on WebDriverEventListener and import WebDriverEventListener Interface and mouse hover on EventCapture and click on “Add unimplemented methods” to add multiple unimplemented methods (without body)
+package listeners;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.WebDriverEventListener;
+//WebDriver Event Listeners
+public class EventCapture implements WebDriverEventListener{
+
+	@Override
+	public void afterChangeValueOf(WebElement arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterClickOn(WebElement arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterNavigateBack(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterNavigateForward(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterNavigateRefresh(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterNavigateTo(String arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterScript(String arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeChangeValueOf(WebElement arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeClickOn(WebElement arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeFindBy(By arg0, WebElement arg1, WebDriver arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeNavigateBack(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeNavigateForward(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeNavigateRefresh(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeNavigateTo(String arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeScript(String arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onException(Throwable arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}	
+
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+	
+package listeners;
+ 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.WebDriverEventListener;
+//WebDriver Event Listeners
+public class EventCapture implements WebDriverEventListener{
+ 
+ @Override
+ public void afterChangeValueOf(WebElement arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterClickOn(WebElement arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterNavigateBack(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterNavigateForward(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterNavigateRefresh(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterNavigateTo(String arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterScript(String arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeChangeValueOf(WebElement arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeClickOn(WebElement arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeFindBy(By arg0, WebElement arg1, WebDriver arg2) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeNavigateBack(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeNavigateForward(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeNavigateRefresh(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeNavigateTo(String arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeScript(String arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void onException(Throwable arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ } 
+ 
+}
+
+Here I am implementing afterNavigateBack, beforeNavigateBack methods.
+package listeners;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.WebDriverEventListener;
+
+public class EventCapture implements WebDriverEventListener{
+
+	@Override
+	public void afterChangeValueOf(WebElement arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterClickOn(WebElement arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterNavigateBack(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("After Navigating Back "+arg0.getCurrentUrl());
+	}
+
+	@Override
+	public void afterNavigateForward(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterNavigateRefresh(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterNavigateTo(String arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterScript(String arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeChangeValueOf(WebElement arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeClickOn(WebElement arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeFindBy(By arg0, WebElement arg1, WebDriver arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeNavigateBack(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("Before Navigating Back "+arg0.getCurrentUrl());
+	}
+
+	@Override
+	public void beforeNavigateForward(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeNavigateRefresh(WebDriver arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeNavigateTo(String arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeScript(String arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onException(Throwable arg0, WebDriver arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+	
+package listeners;
+ 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.WebDriverEventListener;
+ 
+public class EventCapture implements WebDriverEventListener{
+ 
+ @Override
+ public void afterChangeValueOf(WebElement arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterClickOn(WebElement arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterNavigateBack(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ System.out.println("After Navigating Back "+arg0.getCurrentUrl());
+ }
+ 
+ @Override
+ public void afterNavigateForward(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterNavigateRefresh(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterNavigateTo(String arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void afterScript(String arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeChangeValueOf(WebElement arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeClickOn(WebElement arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeFindBy(By arg0, WebElement arg1, WebDriver arg2) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeNavigateBack(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ System.out.println("Before Navigating Back "+arg0.getCurrentUrl());
+ }
+ 
+ @Override
+ public void beforeNavigateForward(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeNavigateRefresh(WebDriver arg0) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeNavigateTo(String arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void beforeScript(String arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+ @Override
+ public void onException(Throwable arg0, WebDriver arg1) {
+ // TODO Auto-generated method stub
+ 
+ }
+ 
+}
+
+Step 2: Create another Class “ListenerMainClass” and write a script (which ever script you prefer). Below script opens two webpages one after other and navigates backs to the first webpage
+
+Step 3: In the Class “ListenerMainClass“, Create EventFiringWebDriver object and pass driver object as a parameter
+
+Step 4: In the Class “ListenerMainClass“, Create an object of the Class “EventCapture” where we implemented all the methods of WebDriverEventListener to register with EventFiringWebDriver
+package listeners;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+
+public class ListenerMainClass {
+	
+	public static void main (String [] args){
+		WebDriver driver = new FirefoxDriver();
+		EventFiringWebDriver eventHandler = new EventFiringWebDriver(driver); 
+		EventCapture eCapture = new EventCapture(); 
+		//Registering with EventFiringWebDriver
+                //Register method allows to register our implementation of WebDriverEventListner to listen to the WebDriver events
+		eventHandler.register(eCapture); 
+		//navigating to the webpage "www.softwaretestingmaterial.com"
+		eventHandler.navigate().to("https://www.softwaretestingmaterial.com/100-software-testing-interview-questions/"); 
+		eventHandler.findElement(By.id("email")).sendKeys("asdsadsa");
+		//navigating to the webpage "www.softwaretestingmaterial.com/category/selenium/"
+		eventHandler.navigate().to("https://www.softwaretestingmaterial.com/agile-testing-interview-questions/"); 
+		//navigating back to the first page
+		eventHandler.navigate().back();
+		eventHandler.quit();
+                //Unregister allows to detach
+		eventHandler.unregister(eCapture);
+		System.out.println("End of Listners Class");
+	}
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+	
+package listeners;
+ 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+ 
+public class ListenerMainClass {
+ 
+ public static void main (String [] args){
+ WebDriver driver = new FirefoxDriver();
+ EventFiringWebDriver eventHandler = new EventFiringWebDriver(driver); 
+ EventCapture eCapture = new EventCapture(); 
+ //Registering with EventFiringWebDriver
+                //Register method allows to register our implementation of WebDriverEventListner to listen to the WebDriver events
+ eventHandler.register(eCapture); 
+ //navigating to the webpage "www.softwaretestingmaterial.com"
+ eventHandler.navigate().to("https://www.softwaretestingmaterial.com/100-software-testing-interview-questions/"); 
+ eventHandler.findElement(By.id("email")).sendKeys("asdsadsa");
+ //navigating to the webpage "www.softwaretestingmaterial.com/category/selenium/"
+ eventHandler.navigate().to("https://www.softwaretestingmaterial.com/agile-testing-interview-questions/"); 
+ //navigating back to the first page
+ eventHandler.navigate().back();
+ eventHandler.quit();
+                //Unregister allows to detach
+ eventHandler.unregister(eCapture);
+ System.out.println("End of Listners Class");
+ }
+}
+
+Finally, Execute the “ListenerMainClass” class. Methods in class “EventCapture” are called automatically based on the script. Verify the Output in the console. You could find the logs in the console. The two url’s in the console are just because the implementation of beforeNavigateBack and afterNavigateBack methods.
+
+If you are not regular reader of SoftwareTestingMaterial.com then I highly recommend you to signup for the free email newsletter using the below link
