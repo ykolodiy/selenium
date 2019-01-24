@@ -23,7 +23,7 @@ public class Analytics {
 
 		
 		
-		//  int n = 2; // Number of threads 
+		// Number of threads 
 	        for (int i=0; i<9; i++) 
 	        { 
 	            MultithreadingDemo object = new MultithreadingDemo(); 
