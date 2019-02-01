@@ -1,0 +1,18 @@
+1 you have 2 PC, hub 192.168.1.4 and node 192.168.1.52
+2 on both download selenium server stands alone to disk C
+3 on node get chromedriver or what you want to disk C
+4 on hub run java -jar selenium-server-standalone-2.42.2.jar -role hub -timeout 30 -browserTimeout 60      > grid is on check http://192.168.1.4:4444/grid/console
+5 on node run java -Dwebdriver.gecko.driver="C:\geckodriver.exe" -jar selenium-server-standalone-3.4.0.jar -role webdriver -hub http://192.168.1.4:4444/grid/register -port 5566
+6 write Capabilities on hub test case
+	WebDriver driver;
+		DesiredCapabilities c = DesiredCapabilities.chrome();
+		c.setBrowserName("chrome");
+		c.setPlatform(Platform.VISTA);
+		driver = new RemoteWebDriver(new URL("http://192.168.1.52:5566/wd/hub"),c);
+		driver.get("https://yahoo.com");
+		System.out.println(driver.getTitle());
+		driver.close();
+    
+    run test > will see execution on node
+    
+    ps. in CAP platform nd browser get thru hover on browser pic in http://192.168.1.4:4444/grid/console
