@@ -1,0 +1,61 @@
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+public class MukeshBrowserStack {
+
+	public static void main(String[] args) throws Exception {
+		
+		/*  local
+		DesiredCapabilities cap = DesiredCapabilities.chrome();
+		cap.setBrowserName("chrome");
+		cap.setPlatform(Platform.WIN10);
+		URL url = new URL("http://localhost:4444/wd/hub");
+		
+		WebDriver driver = new RemoteWebDriver(url,cap);
+
+		driver.get("http://pravda.com.ua");
+		System.out.println(driver.getCurrentUrl());
+		driver.close();	
+		*/
+	//browser stack
+		
+		  final String USERNAME = "yuriykolodiy1";
+		  final String AUTOMATE_KEY = "WWr2BNKoC2dEWT7ANiG4";
+		  final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
+		
+
+		    DesiredCapabilities caps = new DesiredCapabilities().firefox();
+		    caps.setPlatform(Platform.XP);
+		    
+/*
+		     *  DesiredCapabilities caps = new DesiredCapabilities();
+		    caps.setCapability("browserName", "firefox");
+		    caps.setCapability("device", "iPhone 8 Plus");
+		    caps.setCapability("realMobile", "true");
+		    caps.setCapability("os_version", "11");
+*/
+		   
+		    
+		    WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
+		    driver.get("http://www.google.com");
+		    WebElement element = driver.findElement(By.name("q"));
+
+		    element.sendKeys("BrowserStack");
+		    element.submit();
+
+		    System.out.println(driver.getTitle());
+		    driver.quit();
+	
+	
+	
+	}
+
+}
