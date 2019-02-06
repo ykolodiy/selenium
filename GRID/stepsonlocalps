@@ -1,0 +1,18 @@
+1 download selenium server standalone jar
+2 run: java -jar selenium-server-standalone-3.141.59.jar -role hub
+3 check http://localhost:4444/grid/console
+4 // creating node on the same machine and connecting to hub
+java -jar selenium-server-standalone-3.141.59.jar -role node -hub http://localhost:4444/grid/register
+
+
+
+		DesiredCapabilities cap = DesiredCapabilities.chrome();
+		cap.setBrowserName("chrome");
+		cap.setPlatform(Platform.WIN10);
+		URL url = new URL("http://localhost:4444/wd/hub");
+		
+		WebDriver driver = new RemoteWebDriver(url,cap);
+
+		driver.get("http://pravda.com.ua");
+		System.out.println(driver.getCurrentUrl());
+		driver.close();	
