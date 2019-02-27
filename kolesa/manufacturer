@@ -1,0 +1,174 @@
+package mypackage.Test1;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
+/**
+ * Unit test for simple App.
+ */
+public class AppTest 
+    extends TestCase
+{
+    public AppTest( String testName )
+    {
+        super( testName );
+    }
+
+    public static Test suite()
+    {
+        return new TestSuite( AppTest.class );
+    }
+
+    
+    
+    public void testApp() throws Exception
+    {
+    	
+    	Set<String> manufacturer = new HashSet<String>();
+    	
+    	
+    	
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\ykolodiy\\eclipse\\jars\\chromedriver.exe");
+    	
+    	WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("");
+Thread.sleep(3000);
+
+// login if needed
+if(driver.findElements(By.id("userName")).size() !=0)
+{
+  driver.findElement(By.id("userName")).clear();
+  driver.findElement(By.id("userName")).sendKeys("");
+
+  driver.findElement(By.id("userPassword")).clear();
+  driver.findElement(By.id("userPassword")).sendKeys("");
+
+  driver.findElement(By.xpath("//button[contains(text(),'Sign in')]")).click();
+}
+
+System.out.println(driver.getTitle());
+Thread.sleep(1000);
+
+
+Actions builder = new Actions(driver);
+// click on SPECS & PRICING
+WebElement PRICING = driver.findElement(By.linkText("SPECS & PRICING"));
+builder.moveToElement(PRICING).click(PRICING);
+builder.perform();
+
+//click on Vehicle Pricing
+WebElement Vehicle = driver.findElement(By.linkText("Vehicle Pricing"));
+builder.moveToElement(Vehicle).click(Vehicle);
+builder.perform();
+Thread.sleep(1000);
+
+// click on Select One
+driver.findElement(By.linkText("Select One")).click();
+Thread.sleep(1000);
+
+
+
+/* or via js
+ * WebElement webElement = driver.findElement(By.id("Your ID here"));
+JavascriptExecutor executor = (JavascriptExecutor) driver;
+executor.executeScript("arguments[0].click();", webElement);
+ * 
+ * 
+ * */
+
+
+
+//System.out.println(driver.findElements(By.xpath("//input")).get(4).getAttribute("id"));
+
+//System.out.println(driver.findElements(By.xpath("//input")).size());
+//just to get number of input form
+List<WebElement> inputs = driver.findElements(By.xpath("//input"));
+for(WebElement in : inputs) {
+	//System.out.println(in.getText()+" "+ in.getAttribute("id"));
+}
+
+//System.out.println(driver.findElements(By.xpath("//input")).get(18).getText());
+driver.findElements(By.xpath("//input")).get(18).sendKeys("BMW");
+
+
+Thread.sleep(2000);
+// list of manufacturers
+List<WebElement> cars = driver.findElements(By.xpath("//li[contains(@role, 'option')]"));
+//List<WebElement> cars = driver.findElements(By.xpath("//li"));
+
+//System.out.println("cars size: "+cars.size());
+
+//populate manufacturers set array
+for(WebElement car : cars) {
+	//System.out.println(car.getText());
+	if(!car.getText().isEmpty()) {
+	manufacturer.add(car.getText());
+	}
+}
+
+
+
+for(String manuf : manufacturer) {
+	driver.findElements(By.xpath("//input")).get(18).clear();
+	driver.findElements(By.xpath("//input")).get(18).sendKeys(manuf);
+	driver.findElements(By.xpath("//input")).get(18).sendKeys(Keys.RETURN);
+	driver.findElements(By.xpath("//input")).get(19).sendKeys("f");
+	Thread.sleep(2000);
+	List<WebElement> make  = driver.findElements(By.xpath("//li[contains(@role, 'option')]"));
+	System.out.println(manuf+ " : "+make.size());
+
+	for(WebElement m : make) {
+		if (!m.getText().isEmpty()) {
+	System.out.println(m.getText());
+		}
+	}
+	driver.findElements(By.xpath("//input")).get(19).sendKeys(Keys.RETURN);
+}
+
+
+
+
+
+/*
+driver.findElements(By.xpath("//input")).get(18).clear();
+driver.findElements(By.xpath("//input")).get(18).sendKeys("Honda");
+driver.findElements(By.xpath("//input")).get(18).clear();
+driver.findElements(By.xpath("//input")).get(18).sendKeys("Toyota");
+//close dropdown
+driver.findElements(By.xpath("//input")).get(18).sendKeys(Keys.RETURN);
+
+driver.findElements(By.xpath("//input")).get(19).sendKeys("f");
+Thread.sleep(2000);
+List<WebElement> make  = driver.findElements(By.xpath("//li"));
+System.out.println("make size: "+make.size());
+
+for(WebElement m : make) {
+System.out.println(m.getText());}
+
+// close dropdown
+driver.findElements(By.xpath("//input")).get(19).sendKeys(Keys.RETURN);
+
+driver.findElements(By.xpath("//input")).get(18).clear();
+driver.findElements(By.xpath("//input")).get(18).sendKeys("FIAT");
+driver.findElements(By.xpath("//input")).get(19).sendKeys(Keys.RETURN);
+*/
+    }
+}
