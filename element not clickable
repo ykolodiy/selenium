@@ -1,0 +1,54 @@
+JavascriptExecutor js = (JavascriptExecutor) driver;
+js.executeScript("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", findElement(element));
+
+
+___
+
+IJavaScriptExecutor ex = (IJavaScriptExecutor)Driver;
+ex.ExecuteScript("arguments[0].click();", elementToClick);
+
+____
+
+
+The element is clickable but there is a spinner/overlay on top of it
+
+The below code will wait until the overlay disppears
+
+By loadingImage = By.id("loading image ID");
+
+WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+
+wait.until(ExpectedConditions.invisibilityOfElementLocated(loadingImage));
+
+______
+
+
+The page is getting refreshed before it is clicking the element.
+
+For this, make the page to wait for few seconds.
+
+____
+
+The element is not visible to click.
+
+Use Actions or JavascriptExecutor for making it to click.
+
+By Actions:
+
+WebElement element = driver.findElement(By("element_path"));
+
+Actions actions = new Actions(driver);
+
+actions.moveToElement(element).click().perform();
+By JavascriptExecutor:
+
+JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+jse.executeScript("scroll(250, 0)"); // if the element is on top.
+
+jse.executeScript("scroll(0, 250)"); // if the element is on bottom.
+or
+
+JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+jse.executeScript("arguments[0].scrollIntoView()", Webelement); 
