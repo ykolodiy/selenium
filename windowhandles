@@ -1,0 +1,8 @@
+  public ArrayList<String> listOfWindowHandles() {
+        ArrayList<String> handle = new ArrayList<String>(getWebDriver().getWindowHandles());
+        return handle;
+    }
+
+
+   ArrayList<String> handle = incentiveProgramBasePage.commonBy.listOfWindowHandles();
+            incentiveProgramBasePage.commonBy.switchToWindowHandle(handle, 1);
